@@ -1,27 +1,15 @@
 import { Link } from 'react-router-dom';
 import { MockDataContext } from '../context/MockDataContext';
 import { useContext } from 'react';
-import axios from 'axios';
 import CartItem from '../components/CartItem';
 import Layout from '../components/Layout';
 
 const Cart = () => {
-  const { cart, cartTotal: total } = useContext(MockDataContext);
+  const { cart, cartTotal: total, checkout } = useContext(MockDataContext);
 
-  const checkout = async () => {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/api/payment`,
-      {
-        items: cart,
-      }
-    );
-    if (data.url) {
-      window.location.assign(data.url);
-    }
-  };
   return (
     <Layout>
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-10">
         <div className="grid grid-cols-1 gap-7">
           {cart.length === 0 ? (
             <h1 className="text-center text-2xl">Your Cart is Empty :(</h1>

@@ -1,8 +1,5 @@
-import { LoadingIcon } from '../components/LoadingIcon';
 import { MockDataContext } from '../context/MockDataContext';
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useContext, useState } from 'react';
 import Layout from '../components/Layout';
 import QuantityButton from '../components/QuantityButton';
 import RecommendedItems from '../components/product/RecommendedItems';
@@ -11,8 +8,7 @@ import SizeIcon from '../components/product/SizeIcon';
 const Product = () => {
   const [cartButton, setCartButton] = useState('ADD TO CART');
   const [itemQuantity, setItemQuantity] = useState(1);
-  const { product, setProduct, addToCart } = useContext(MockDataContext);
-  const { productID } = useParams();
+  const { product, addToCart } = useContext(MockDataContext);
   const sizes = ['XS', 'S', 'M', 'L', 'XL'];
 
   const handleCart = () => {
@@ -33,24 +29,6 @@ const Product = () => {
   const decreaseQuantity = () => {
     setItemQuantity(itemQuantity === 1 ? 1 : itemQuantity - 1);
   };
-
-  useEffect(() => {
-    const fetchProduct = async id => {
-      try {
-        const { data } = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/product/${id}`
-        );
-        setProduct({
-          ...data[0],
-          size: '',
-          quantity: 1,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchProduct(productID);
-  }, [productID, setProduct]);
 
   return (
     <article>

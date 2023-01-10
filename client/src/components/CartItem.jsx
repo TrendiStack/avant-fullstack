@@ -21,7 +21,7 @@ const CartItem = ({ item }) => {
       <img
         src={image}
         alt={name}
-        className="min-w-[10rem] max-w-[10rem] aspect-square "
+        className="min-w-[10rem] max-w-[10rem] aspect-square object-cover "
       />
       <div className="flex flex-col justify-between w-full">
         <div className="flex justify-between">

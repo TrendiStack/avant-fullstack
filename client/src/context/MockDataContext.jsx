@@ -7,10 +7,11 @@ export const MockDataContext = createContext({
   cartTotal: '',
   categories: [],
   collections: [],
-  products: [],
   product: {},
+  products: [],
   reviews: [],
   addToCart: () => {},
+  checkout: () => {},
   decreaseQuantity: () => {},
   fetchProduct: () => {},
   increaseQuantity: () => {},
@@ -83,6 +84,18 @@ const MockDataProvider = ({ children }) => {
       setReviews(data.reviews);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const checkout = async () => {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/payment`,
+      {
+        items: cart,
+      }
+    );
+    if (data.url) {
+      window.location.assign(data.url);
     }
   };
 
@@ -188,7 +201,7 @@ const MockDataProvider = ({ children }) => {
 
   useEffect(() => {
     fetchReviews();
-  }, [product]);
+  }, []);
 
   useEffect(() => {
     fetchCollections();
@@ -209,6 +222,7 @@ const MockDataProvider = ({ children }) => {
     products,
     reviews,
     addToCart,
+    checkout,
     decreaseQuantity,
     increaseQuantity,
     removeFromCart,

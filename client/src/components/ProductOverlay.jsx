@@ -1,8 +1,17 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { MockDataContext } from '../context/MockDataContext';
 
 const ProductOverlay = ({ productID }) => {
+  const { products, setProduct } = useContext(MockDataContext);
+
   return (
     <Link
+      onClick={() =>
+        setProduct(
+          products.filter(product => product.id === parseInt(productID))[0]
+        )
+      }
       to={`/home/product/${productID}`}
       className="absolute top-0 left-0 w-full h-full flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300"
     >

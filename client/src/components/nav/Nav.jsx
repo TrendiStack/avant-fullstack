@@ -10,6 +10,7 @@ import MenuIcon from '../menu/MenuIcon';
 import ProfileOptions from './ProfileOptions';
 import SearchBar from '../SearchBar';
 import ThemeToggle from '../ThemeToggle';
+import TotalItemIcon from './TotalItemIcon';
 
 const Nav = () => {
   const [searchBar, setSearchBar] = useState(false);
@@ -42,8 +43,9 @@ const Nav = () => {
               onClick={() => setSearchBar(!searchBar)}
               className="cursor-pointer"
             />
-            <Link to="cart">
+            <Link to="cart" className="relative">
               <AiOutlineShoppingCart />
+              <TotalItemIcon />
             </Link>
             <AuthButton profile={profile} setProfile={setProfile} />
             <ProfileOptions profile={profile} setProfile={setProfile} />
