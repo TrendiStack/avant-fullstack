@@ -7,6 +7,7 @@ export const MockDataContext = createContext({
   cartTotal: '',
   categories: [],
   collections: [],
+  products: [],
   product: {},
   reviews: [],
   addToCart: () => {},
@@ -20,6 +21,7 @@ export const MockDataContext = createContext({
 
 const MockDataProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const [collections, setCollections] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -27,6 +29,23 @@ const MockDataProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('cart')) || []
   );
   const [cartTotal, setCartTotal] = useState();
+
+  const fetchProducts = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/products`
+      );
+      // add size and quantity to each product
+      const newArr = data.products.map(product => ({
+        ...product,
+        size: '',
+        quantity: 1,
+      }));
+      setProducts(newArr);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const fetchCategories = async () => {
     try {
@@ -162,11 +181,19 @@ const MockDataProvider = ({ children }) => {
 
     handleCartTotal();
   }, [cart]);
+
   useEffect(() => {
     fetchCategories();
-    fetchReviews();
-    fetchCollections();
   }, []);
+
+  useEffect(() => {
+    fetchReviews();
+  }, [product]);
+
+  useEffect(() => {
+    fetchCollections();
+    fetchProducts();
+  }, [categories]);
 
   // save cart to local storage
   useEffect(() => {
@@ -179,6 +206,7 @@ const MockDataProvider = ({ children }) => {
     categories,
     collections,
     product,
+    products,
     reviews,
     addToCart,
     decreaseQuantity,

@@ -11,7 +11,6 @@ import SizeIcon from '../components/product/SizeIcon';
 const Product = () => {
   const [cartButton, setCartButton] = useState('ADD TO CART');
   const [itemQuantity, setItemQuantity] = useState(1);
-  const [loading, setLoading] = useState(true);
   const { product, setProduct, addToCart } = useContext(MockDataContext);
   const { productID } = useParams();
   const sizes = ['XS', 'S', 'M', 'L', 'XL'];
@@ -52,16 +51,6 @@ const Product = () => {
     };
     fetchProduct(productID);
   }, [productID, setProduct]);
-
-  useEffect(() => {
-    if (product) {
-      setLoading(false);
-    }
-  }, [product]);
-
-  if (loading) {
-    return <LoadingIcon />;
-  }
 
   return (
     <article>
