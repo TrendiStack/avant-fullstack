@@ -18,7 +18,7 @@
   "version": "1.0.0",
   "main": "App.js",
   "engines": {
-    "node": "19.2.0"
+    "node": "18.x"
   },
   "scripts": {
     "start": "node app.js",
