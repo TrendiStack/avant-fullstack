@@ -9,7 +9,13 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/app.js"
+      "dest": "/app.js",
+      "headers": [
+        {
+          "source": "Access-Control-Allow-Origin",
+          "value": "https://avant-fullstack.vercel.app"
+        }
+      ]
     }
   ]
 }
