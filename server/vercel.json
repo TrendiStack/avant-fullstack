@@ -10,12 +10,9 @@
     {
       "src": "/(.*)",
       "dest": "/app.js",
-      "headers": [
-        {
-          "source": "Access-Control-Allow-Origin",
-          "value": "https://avant-fullstack.vercel.app"
-        }
-      ]
+      "headers": {
+        "Access-Control-Allow-Origin": "https://avant-fullstack.vercel.app"
+      }
     }
   ]
 }
