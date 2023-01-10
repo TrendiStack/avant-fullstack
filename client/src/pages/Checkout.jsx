@@ -1,8 +1,6 @@
 import { Formik } from 'formik';
-import { loadStripe } from '@stripe/stripe-js';
 import { useState } from 'react';
 import * as yup from 'yup';
-import Cart from './Cart';
 import CheckoutForm from '../components/checkout/CheckoutForm';
 import Layout from '../components/Layout';
 import Payment from '../components/checkout/Payment';
@@ -12,56 +10,12 @@ const Checkout = () => {
   const isFirstStep = activeStep === 0;
   const isSecondStep = activeStep === 1;
 
-  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-
-  const handleFormSubmit = async (values, actions) => {
-    setActiveStep(prev => prev + 1);
-    // copies the billing address to the shipping address
-    if (isFirstStep && values.shippingAddress.isSameAsBilling) {
-      actions.setFieldValue('shippingAddress', {
-        ...values.billingAddress,
-        isSameAsBilling: true,
-      });
-    }
-    if (isSecondStep) {
-      makePayment(values);
-    }
-
-    actions.setTouched({});
-  };
-
-  async function makePayment(values) {
-    const stripe = await stripePromise;
-    const requestBody = {
-      username: values.billingAddress.firstName,
-      email: values.billingAddress.email,
-      products: Cart.map(({ id, count }) => ({ id, count })),
-    };
-
-    const response = await fetch('http://localhost:5000/api/checkout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    const session = await response.json();
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-
-    if (result.error) {
-      console.log(result.error.message);
-    }
-  }
-
   return (
     <Layout>
       <Formik
         initialValues={initialValues}
         validationSchema={checkOutScheme[activeStep]}
-        onSubmit={handleFormSubmit}
+        // onSubmit={handleFormSubmit}
       >
         {({
           errors,

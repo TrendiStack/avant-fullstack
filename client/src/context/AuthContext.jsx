@@ -11,7 +11,7 @@ const AuthContextProvider = props => {
 
   const getLoggedIn = async () => {
     const loggedInRes = await axios.get(
-      'http://localhost:5000/api/auth/loggedin',
+      `${process.env.REACT_APP_BACKEND_URL}/api/auth/loggedin`,
       {
         withCredentials: true,
       }

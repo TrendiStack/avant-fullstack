@@ -9,9 +9,12 @@ const Cart = () => {
   const { cart, cartTotal: total } = useContext(MockDataContext);
 
   const checkout = async () => {
-    const { data } = await axios.post('http://localhost:5000/api/payment', {
-      items: cart,
-    });
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/api/payment`,
+      {
+        items: cart,
+      }
+    );
     if (data.url) {
       window.location.assign(data.url);
     }

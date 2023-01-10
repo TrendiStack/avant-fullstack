@@ -5,7 +5,7 @@ router.get('/:id', (req, res) => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.DEVELOPMENT_URL}/api/products`
+        `${process.env.BACKEND_URL}/api/products`
       );
 
       const product = data.products.filter(

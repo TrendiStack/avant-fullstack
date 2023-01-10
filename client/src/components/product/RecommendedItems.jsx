@@ -10,7 +10,9 @@ const RecommendedItems = ({ product }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/products`
+        );
         const randomize = [...data.products].sort(() => Math.random() - 0.5);
         setProducts(randomize);
         setLoading(false);

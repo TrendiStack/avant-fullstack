@@ -12,7 +12,9 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/products`
+        );
         // add size and quantity to each product
         const newArr = data.products.map(product => ({
           ...product,

@@ -4,7 +4,7 @@ export const useLogout = () => {
   const logout = () => {
     try {
       localStorage.removeItem('data');
-      axios.get('http://localhost:5000/api/auth/logout', {
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`, {
         withCredentials: true,
       });
       window.location.reload();

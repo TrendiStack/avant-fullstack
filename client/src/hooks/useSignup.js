@@ -9,7 +9,7 @@ export const useSignup = () => {
     try {
       // send post request to server
       const res = await axios.post(
-        'http://localhost:5000/api/auth/login',
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
         signUpData,
         {
           withCredentials: true,

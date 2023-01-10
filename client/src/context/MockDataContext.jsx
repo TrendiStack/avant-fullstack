@@ -31,7 +31,9 @@ const MockDataProvider = ({ children }) => {
   const fetchCategories = async () => {
     try {
       //Fetch Data from API
-      const { data } = await axios.get('http://localhost:5000/api/categories');
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/categories`
+      );
       // Set Data to state variable
       setCategories(data.categories);
     } catch (err) {
@@ -42,7 +44,9 @@ const MockDataProvider = ({ children }) => {
   const fetchCollections = async () => {
     try {
       //Fetch Data from API
-      const { data } = await axios.get(`http://localhost:5000/api/collections`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/collections`
+      );
       // Set Data to state variable
       setCollections(data.collections);
     } catch (err) {
@@ -53,7 +57,9 @@ const MockDataProvider = ({ children }) => {
   const fetchReviews = async () => {
     try {
       //Fetch Data from API
-      const { data } = await axios.get(`http://localhost:5000/api/reviews`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/reviews`
+      );
       // Set Data to state variable
       setReviews(data.reviews);
     } catch (err) {
