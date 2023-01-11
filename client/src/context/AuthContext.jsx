@@ -4,13 +4,16 @@ import axios from 'axios';
 export const AuthContext = createContext({
   isAuthenticated: false,
   user: null,
+  errors: null,
   login: () => {},
   logout: () => {},
+  signup: () => {},
 });
 
 const AuthContextProvider = props => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   const login = async (email, password) => {
     try {
@@ -27,6 +30,7 @@ const AuthContextProvider = props => {
       return data;
     } catch (err) {
       console.error('Error while logging in. Error: ', err.response.data.msg);
+      setErrors(err.response.data.msg);
     }
   };
 
@@ -46,7 +50,39 @@ const AuthContextProvider = props => {
       localStorage.removeItem('jwt');
       checkAuth();
     } catch (err) {
-      console.error('Error while logging out.', err);
+      console.error('Error while logging out.', err.response.data.msg);
+      setErrors(err.response.data.msg);
+    }
+  };
+
+  const signup = async (
+    firstName,
+    lastName,
+    email,
+    username,
+    password,
+    passwordVerify
+  ) => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`,
+        {
+          firstName,
+          lastName,
+          email,
+          username,
+          password,
+          passwordVerify,
+        },
+        { withCredentials: true }
+      );
+      setIsAuthenticated(true);
+      setUser(data.user);
+      localStorage.setItem('jwt', data.token);
+      return data;
+    } catch (err) {
+      console.error('Error while signing up. Error: ', err.response.data.msg);
+      setErrors(err.response.data.msg);
     }
   };
   const checkAuth = async () => {
@@ -80,8 +116,10 @@ const AuthContextProvider = props => {
   const value = {
     isAuthenticated,
     user,
+    errors,
     login,
     logout,
+    signup,
   };
 
   return (

@@ -8,7 +8,7 @@ import Layout from '../../components/Layout';
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useContext(AuthContext);
+  const { errors, login } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const toSignUp = () => {
@@ -19,7 +19,7 @@ const SignInForm = () => {
     e.preventDefault();
     try {
       await login(email, password);
-      // navigate('/home');
+      navigate('/home');
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +31,7 @@ const SignInForm = () => {
         onSubmit={signIn}
         className="flex flex-col gap-10 justify-center items-center mt-10 dark:text-white"
       >
-        {/* {errors && <span className="text-red-500">{errors}</span>} */}
+        {errors && <span className="text-red-500">{errors}</span>}
         <FormLabel
           label="Email"
           inputType="email"

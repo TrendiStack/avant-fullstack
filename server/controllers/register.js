@@ -57,7 +57,6 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
         lastName: savedUser.lastName,
         email: savedUser.email,
         username: savedUser.username,
-        darkMode: savedUser.darkMode,
       },
     });
   } catch (err) {

@@ -34,7 +34,6 @@ const handleLogin = async (req, res, jwt, bcrypt) => {
         lastName: user.lastName,
         email: user.email,
         username: user.username,
-        darkMode: user.darkMode,
       },
     });
   } catch (err) {

@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { useSignup } from '../../hooks/useSignup';
 import { useState } from 'react';
 import FormButton from '../form/FormButton';
 import FormLabel from '../form/FormLabel';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 const SignUpForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -11,7 +12,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVerify, setPasswordVerify] = useState('');
-  const { signup, errors } = useSignup();
+  const { errors, signup } = useContext(AuthContext);
   const navigate = useNavigate();
   const toSignIn = () => {
     navigate('/home/sign-in');
@@ -19,17 +20,19 @@ const SignUpForm = () => {
 
   const signUp = async e => {
     e.preventDefault();
-
-    const signUpData = {
-      firstName,
-      lastName,
-      email,
-      username,
-      password,
-      passwordVerify,
-    };
-    await signup(signUpData);
-    navigate('/home');
+    try {
+      await signup(
+        firstName,
+        lastName,
+        email,
+        username,
+        password,
+        passwordVerify
+      );
+      navigate('/home');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
