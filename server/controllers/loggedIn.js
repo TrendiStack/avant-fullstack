@@ -4,13 +4,24 @@ const handleLoggedIn = (req, res, jwt) => {
     if (!token) {
       return res.json(false);
     }
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
-    if (!verified) {
-      return res.json(false);
-    }
-    res.json(true);
+    const verified = jwt.verify(
+      token,
+      process.env.JWT_SECRET,
+      (err, decoded) => {
+        if (err) {
+          return res.json(false);
+        } else {
+          return res.json(true);
+        }
+      }
+    );
+
+    console.log('verified: ', verified);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err.message);
+    res.status(500).send('Server error');
+  } finally {
+    console.log('handleLoggedIn() executed');
   }
 };
 
