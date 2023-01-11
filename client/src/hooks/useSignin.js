@@ -14,10 +14,8 @@ export const useSignin = () => {
           withCredentials: true,
         }
       );
-
       // get logged in user
       await getLoggedIn();
-
       // save to local storage
       localStorage.setItem('data', JSON.stringify(res.data));
     } catch (err) {

@@ -39,9 +39,6 @@ app.use('/api/categories', require('./routers/categoriesRouter'));
 // Products
 app.use('/api/products', require('./routers/productsRouter'));
 
-// product
-app.use('/api/product', require('./routers/productRouter'));
-
 // Collections
 app.use('/api/collections', require('./routers/collectionRouter'));
 

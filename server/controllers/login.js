@@ -1,3 +1,5 @@
+const User = require('../models/User.js');
+
 const handleLogin = async (req, res, jwt, bcrypt) => {
   try {
     // Data from the form

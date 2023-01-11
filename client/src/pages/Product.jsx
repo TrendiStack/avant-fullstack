@@ -1,5 +1,7 @@
 import { MockDataContext } from '../context/MockDataContext';
 import { useContext, useState } from 'react';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import QuantityButton from '../components/QuantityButton';
 import RecommendedItems from '../components/product/RecommendedItems';
@@ -8,7 +10,15 @@ import SizeIcon from '../components/product/SizeIcon';
 const Product = () => {
   const [cartButton, setCartButton] = useState('ADD TO CART');
   const [itemQuantity, setItemQuantity] = useState(1);
-  const { product, addToCart } = useContext(MockDataContext);
+  const { productID } = useParams();
+
+  const { product, products, setProduct, addToCart } =
+    useContext(MockDataContext);
+
+  const filteredProduct = products.filter(
+    product => product.id === parseInt(productID)
+  )[0];
+
   const sizes = ['XS', 'S', 'M', 'L', 'XL'];
 
   const handleCart = () => {
@@ -29,6 +39,10 @@ const Product = () => {
   const decreaseQuantity = () => {
     setItemQuantity(itemQuantity === 1 ? 1 : itemQuantity - 1);
   };
+
+  useEffect(() => {
+    setProduct(filteredProduct);
+  }, [filteredProduct, setProduct]);
 
   return (
     <article>

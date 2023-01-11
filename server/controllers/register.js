@@ -1,3 +1,5 @@
+const User = require('../models/User');
+
 const handleRegister = async (req, res, jwt, bcrypt) => {
   const { firstName, lastName, email, username, password, passwordVerify } =
     req.body;
