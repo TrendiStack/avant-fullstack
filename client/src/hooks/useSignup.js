@@ -15,7 +15,6 @@ export const useSignup = () => {
           withCredentials: true,
         }
       );
-      console.log('res.data: ', res.data);
       // get logged in user
       await getLoggedIn();
 
