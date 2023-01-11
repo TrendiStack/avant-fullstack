@@ -1,6 +1,6 @@
+import { AuthContext } from '../../context/AuthContext';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSignin } from '../../hooks/useSignin';
-import { useState } from 'react';
 import FormButton from '../form/FormButton';
 import FormLabel from '../form/FormLabel';
 import Layout from '../../components/Layout';
@@ -8,7 +8,8 @@ import Layout from '../../components/Layout';
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signin } = useSignin();
+  const { login } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const toSignUp = () => {
     navigate('/home/sign-up');
@@ -16,7 +17,12 @@ const SignInForm = () => {
 
   const signIn = async e => {
     e.preventDefault();
-    await signin(email, password);
+    try {
+      await login(email, password);
+      // navigate('/home');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

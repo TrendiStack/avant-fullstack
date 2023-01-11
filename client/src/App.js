@@ -1,7 +1,5 @@
-import { AuthContext } from './context/AuthContext';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { SearchResults } from './pages/SearchResults';
-import { useContext } from 'react';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Footer from './components/footer/Footer';
@@ -16,9 +14,12 @@ import Profile from './pages/Profile';
 import Products from './pages/Products';
 import Success from './pages/Success';
 import PageNotFound from './pages/PageNotFound';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
-  const { loggedIn } = useContext(AuthContext);
+  const { isAuthenticated, user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div className="min-h-[100vh] theme">
       <Routes>
@@ -31,15 +32,17 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route
             path="profile"
-            element={loggedIn ? <Profile /> : <Navigate to="/home/sign-in" />}
+            element={
+              isAuthenticated ? <Profile /> : <Navigate to="/home/sign-in" />
+            }
           />
           <Route
             path="sign-up"
-            element={loggedIn ? <Navigate to="/home" /> : <SignUp />}
+            element={isAuthenticated ? <Navigate to="/home" /> : <SignUp />}
           />
           <Route
             path="sign-in"
-            element={loggedIn ? <Navigate to="/home" /> : <SignIn />}
+            element={isAuthenticated ? <Navigate to="/home" /> : <SignIn />}
           />
           <Route path="search/:id" element={<SearchResults />} />
           <Route path="checkout" element={<Checkout />} />

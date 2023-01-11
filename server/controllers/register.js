@@ -49,23 +49,17 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
     const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET);
 
     // send token to client
-    res
-      .cookie('token', token, {
-        httpOnly: true,
-
-        maxAge: 900000,
-      })
-      .json({
-        token,
-        user: {
-          id: savedUser._id,
-          firstName: savedUser.firstName,
-          lastName: savedUser.lastName,
-          email: savedUser.email,
-          username: savedUser.username,
-          darkMode: savedUser.darkMode,
-        },
-      });
+    res.json({
+      token,
+      user: {
+        id: savedUser._id,
+        firstName: savedUser.firstName,
+        lastName: savedUser.lastName,
+        email: savedUser.email,
+        username: savedUser.username,
+        darkMode: savedUser.darkMode,
+      },
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

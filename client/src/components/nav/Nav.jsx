@@ -1,11 +1,12 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { AuthContext } from '../../context/AuthContext';
 import { Link, Outlet } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import AuthButton from '../auth/AuthButton';
 import Layout from '../Layout';
 import Menu from '../menu/Menu';
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
 import MenuIcon from '../menu/MenuIcon';
 import ProfileOptions from './ProfileOptions';
 import SearchBar from '../SearchBar';
@@ -16,7 +17,7 @@ const Nav = () => {
   const [searchBar, setSearchBar] = useState(false);
   const [menu, setMenu] = useState(false);
   const [profile, setProfile] = useState(false);
-  const { loggedIn } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <>
@@ -53,7 +54,7 @@ const Nav = () => {
         </nav>
       </Layout>
       <Outlet />
-      <Menu menu={menu} setMenu={setMenu} isLoggedIn={loggedIn} />
+      <Menu menu={menu} setMenu={setMenu} isAuthenticated={isAuthenticated} />
     </>
   );
 };

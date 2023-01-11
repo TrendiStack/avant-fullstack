@@ -1,11 +1,12 @@
+import { AuthContext } from '../../context/AuthContext';
 import { BsInstagram, BsTwitter, BsFacebook } from 'react-icons/bs';
 import { FaTiktok } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 import { useEffect } from 'react';
-import { useLogout } from '../../hooks/useLogout';
 
-const Menu = ({ menu, setMenu, isLoggedIn }) => {
-  const { logout } = useLogout();
+const Menu = ({ menu, setMenu, isAuthenticated }) => {
+  const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -61,7 +62,7 @@ const Menu = ({ menu, setMenu, isLoggedIn }) => {
           <li onClick={() => setMenu(false)} className="menu-item">
             <Link to="/home/shop/categories">Shop</Link>
           </li>
-          {isLoggedIn ? (
+          {isAuthenticated ? (
             <li onClick={handleLogout} className="menu-item cursor-pointer">
               Sign out
             </li>

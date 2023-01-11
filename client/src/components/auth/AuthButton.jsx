@@ -1,15 +1,15 @@
-import { AuthContext } from '../../context/AuthContext';
-import { BsPersonFill } from 'react-icons/bs';
 import { useContext } from 'react';
+import { BsPersonFill } from 'react-icons/bs';
+import { AuthContext } from '../../context/AuthContext';
 
 const AuthButton = ({ className, signin, profile, setProfile }) => {
-  const { loggedIn } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <button
       onClick={() => setProfile(!profile)}
       className={`${className}
-      ${!loggedIn && signin}
+      ${!isAuthenticated && signin}
     `}
     >
       <BsPersonFill />
