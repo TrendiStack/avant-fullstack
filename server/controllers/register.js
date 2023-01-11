@@ -52,8 +52,7 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
     res
       .cookie('token', token, {
         httpOnly: true,
-        sameSite: 'none',
-        secure: true,
+
         maxAge: 900000,
       })
       .json({
