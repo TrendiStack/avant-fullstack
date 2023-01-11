@@ -21,6 +21,7 @@ const SignInForm = () => {
       password,
     };
     const signInRes = await signin(signinData);
+    console.log(signInRes);
     if (signInRes) {
       navigate('/home');
     } else {

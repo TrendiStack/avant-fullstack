@@ -17,12 +17,11 @@ const AuthContextProvider = props => {
       }
     );
     setLoggedIn(loggedInRes.data);
-    console.log(loggedInRes.data);
   };
 
   useEffect(() => {
     getLoggedIn();
-  }, [loggedIn]);
+  }, []);
 
   const value = {
     loggedIn,
