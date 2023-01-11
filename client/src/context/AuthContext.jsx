@@ -21,7 +21,7 @@ const AuthContextProvider = props => {
 
   useEffect(() => {
     getLoggedIn();
-  }, []);
+  }, [loggedIn]);
 
   const value = {
     loggedIn,
