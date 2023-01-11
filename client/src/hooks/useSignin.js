@@ -5,22 +5,25 @@ import axios from 'axios';
 export const useSignin = () => {
   const [errors, setErrors] = useState(null);
   const { getLoggedIn } = useContext(AuthContext);
-  const signin = async signinData => {
+
+  const signin = async (email, password) => {
     try {
-      const res = await axios.post(
+      const loginData = {
+        email,
+        password,
+      };
+
+      await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
-        signinData,
+        loginData,
         {
           withCredentials: true,
         }
       );
-      // get logged in user
+
       await getLoggedIn();
-      // save to local storage
-      localStorage.setItem('data', JSON.stringify(res.data));
     } catch (err) {
-      console.error('Error while signing in. Error: ', err.response.data.msg);
-      err.response.data.msg && setErrors(err.response.data.msg);
+      setErrors(err.response.data.msg);
     }
   };
 

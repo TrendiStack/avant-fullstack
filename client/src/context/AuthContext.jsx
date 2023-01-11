@@ -10,13 +10,14 @@ const AuthContextProvider = props => {
   const [loggedIn, setLoggedIn] = useState(undefined);
 
   const getLoggedIn = async () => {
-    const loggedInRes = await axios.get(
+    const { data } = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/api/auth/loggedin`,
       {
         withCredentials: true,
       }
     );
-    setLoggedIn(loggedInRes.data);
+    setLoggedIn(data.loggedIn);
+    console.log(data);
   };
 
   useEffect(() => {

@@ -8,7 +8,7 @@ import Layout from '../../components/Layout';
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signin, errors } = useSignin();
+  const { signin } = useSignin();
   const navigate = useNavigate();
   const toSignUp = () => {
     navigate('/home/sign-up');
@@ -16,17 +16,7 @@ const SignInForm = () => {
 
   const signIn = async e => {
     e.preventDefault();
-    const signinData = {
-      email,
-      password,
-    };
-    const signInRes = await signin(signinData);
-    console.log(signInRes);
-    if (signInRes) {
-      navigate('/home');
-    } else {
-      navigate('/home/sign-in');
-    }
+    await signin(email, password);
   };
 
   return (
@@ -35,7 +25,7 @@ const SignInForm = () => {
         onSubmit={signIn}
         className="flex flex-col gap-10 justify-center items-center mt-10 dark:text-white"
       >
-        {errors && <span className="text-red-500">{errors}</span>}
+        {/* {errors && <span className="text-red-500">{errors}</span>} */}
         <FormLabel
           label="Email"
           inputType="email"
