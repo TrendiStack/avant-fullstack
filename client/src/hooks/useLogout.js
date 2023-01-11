@@ -11,7 +11,7 @@ export const useLogout = () => {
         withCredentials: true,
       });
       await getLoggedIn();
-      // window.location.reload();
+      window.location.reload();
     } catch (err) {
       console.error('Error while logging out. Error: ', err.response.data.msg);
     }
