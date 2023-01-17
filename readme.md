@@ -91,6 +91,8 @@ npm start
 
 - Implementing JWT authentication: To solve this, I used the jsonwebtoken library to handle the generation and verification of tokens on the server side and the use of tokens for authenticated requests on the client side.
 
+- Error handling: Another challenge I faced was handling errors properly. This involved understanding how to properly handle errors on both the client and server side. I had to ensure that the system would handle errors in a way that was user-friendly and provided meaningful feedback to the user. I also had to ensure that the system would not break if an error occurred. To overcome this challenge, I made sure to properly test the system and added error handling code in the necessary areas.
+
 ## Future Improvements
 
 - Add forgot password functionality
