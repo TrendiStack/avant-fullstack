@@ -6,7 +6,7 @@ The goal was to build an authentication system using React and JWT on the client
 
 Landing Page
 
-![alt text](https://im.ezgif.com/tmp/ezgif-1-841d016dd8.gif)
+![alt text](avant-landingpage.gif)
 
 Home Page
 
