@@ -35,6 +35,7 @@ const handleUsername = async (req, res, jwt) => {
   // send token and updated user info to client
 
   res.json({
+    msg: 'Username updated',
     token,
     user: {
       id: user._id,

@@ -1,4 +1,4 @@
-const User = require('../models/User.js');
+const { validateEmail } = require('../validators/validateEmail');
 
 const handleLogin = async (req, res, jwt, bcrypt) => {
   try {
@@ -8,6 +8,9 @@ const handleLogin = async (req, res, jwt, bcrypt) => {
     // Validation
     if (!email || !password) {
       return res.status(400).json({ msg: 'Please enter all fields' });
+    }
+    if (!validateEmail(email)) {
+      return res.status(400).json({ msg: 'Please enter a valid email' });
     }
 
     // Check for existing user

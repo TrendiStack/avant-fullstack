@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const { validateEmail } = require('../validators/validateEmail');
 
 const handleRegister = async (req, res, jwt, bcrypt) => {
   const { firstName, lastName, email, username, password, passwordVerify } =
@@ -15,7 +15,9 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
     ) {
       return res.status(400).json({ msg: 'Please enter all fields' });
     }
-
+    if (!validateEmail(email)) {
+      return res.status(400).json({ msg: 'Please enter a valid email' });
+    }
     if (username.length < 6) {
       return res
         .status(400)
