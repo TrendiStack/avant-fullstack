@@ -3,6 +3,7 @@ import UserDataDisplay from '../components/profile/UserDataDisplay';
 import Layout from '../components/Layout';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -21,6 +22,7 @@ const Profile = () => {
           <UserDataDisplay header="Email" data={user.email} />
         </div>
       </div>
+      <Link to="/home/change-password"> Change Password</Link>
     </Layout>
   );
 };

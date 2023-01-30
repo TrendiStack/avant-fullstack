@@ -8,18 +8,17 @@ import Layout from '../../components/Layout';
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { errors, login } = useContext(AuthContext);
-
+  const { errors, login, isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
-  const toSignUp = () => {
-    navigate('/home/sign-up');
-  };
 
   const signIn = async e => {
     e.preventDefault();
     try {
-      await login(email, password);
-      navigate('/home');
+      const data = await login(email, password);
+      console.log(data);
+      if (isAuthenticated) {
+        navigate('/home');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -48,10 +47,7 @@ const SignInForm = () => {
         />
         <p>
           Don't have an account?{' '}
-          <span
-            onClick={toSignUp}
-            className="font-bold cursor-pointer hover:text-neutral-500 transition-all duration-500"
-          >
+          <span className="font-bold cursor-pointer hover:text-neutral-500 transition-all duration-500">
             Sign Up
           </span>
           !

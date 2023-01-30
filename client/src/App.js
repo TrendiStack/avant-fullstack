@@ -16,10 +16,10 @@ import Success from './pages/Success';
 import PageNotFound from './pages/PageNotFound';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
+import ChangePassword from './pages/ChangePassword';
 
 function App() {
-  const { isAuthenticated, user } = useContext(AuthContext);
-  console.log(user);
+  const { isAuthenticated } = useContext(AuthContext);
   return (
     <div className="min-h-[100vh] theme">
       <Routes>
@@ -43,6 +43,16 @@ function App() {
           <Route
             path="sign-in"
             element={isAuthenticated ? <Navigate to="/home" /> : <SignIn />}
+          />
+          <Route
+            path="change-password"
+            element={
+              isAuthenticated ? (
+                <ChangePassword />
+              ) : (
+                <Navigate to="/home/profile" />
+              )
+            }
           />
           <Route path="search/:id" element={<SearchResults />} />
           <Route path="checkout" element={<Checkout />} />

@@ -15,6 +15,13 @@ const handleFirstNameChange = async (req, res, jwt) => {
   const user = await User.findOne({ email: email });
   if (!user) return res.status(400).json({ msg: 'User does not exist' });
 
+  // Check if first name is already that of the user
+  if (user.firstName === firstName) {
+    return res
+      .status(400)
+      .json({ msg: 'Your First name is already set to that name' });
+  }
+
   // Update first name
   user.firstName = firstName;
   await user.save();

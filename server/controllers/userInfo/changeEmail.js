@@ -14,6 +14,11 @@ const handleEmailChange = async (req, res, jwt) => {
   const user = await User.findOne({ email: email });
   if (!user) return res.status(400).json({ msg: 'User does not exist' });
 
+  // Check if user already has an account with the new email
+  if (user.email === newEmail) {
+    return res.status(400).json({ msg: 'Already using this email' });
+  }
+
   // Update email name
   user.email = newEmail;
   await user.save();

@@ -15,6 +15,11 @@ const handleLastNameChange = async (req, res, jwt) => {
   const user = await User.findOne({ email: email });
   if (!user) return res.status(400).json({ msg: 'User does not exist' });
 
+  // check is user already has an account with the new last name
+  if (user.lastName === lastName) {
+    return res.status(400).json({ msg: 'Already using this last name' });
+  }
+
   // Update last name
   user.lastName = lastName;
   await user.save();

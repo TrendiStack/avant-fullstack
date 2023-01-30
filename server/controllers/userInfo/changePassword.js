@@ -23,6 +23,12 @@ const handeChangePassword = async (req, res, jwt, bcrypt) => {
   const salt = await bcrypt.genSalt();
   const hash = await bcrypt.hash(password, salt);
 
+  // check if new password is the same as old password
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (isMatch) {
+    return res.status(400).json({ msg: 'New password cannot be the same' });
+  }
+
   // Update password
   user.password = hash;
   await user.save();
