@@ -15,6 +15,12 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
     ) {
       return res.status(400).json({ msg: 'Please enter all fields' });
     }
+
+    if (username.length < 6) {
+      return res
+        .status(400)
+        .json({ msg: 'Username must be at least 6 characters' });
+    }
     if (password.length < 6) {
       return res
         .status(400)

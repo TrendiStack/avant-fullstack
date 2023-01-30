@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { register, login, logout, loggedIn } = require('../controllers/index');
+const { username } = require('../controllers/userInfo/index');
 
 // Register
 router.post('/', async (req, res) => {
@@ -22,6 +23,11 @@ router.get('/logout', (req, res) => {
 // Logged In
 router.get('/loggedin', (req, res) => {
   loggedIn.handleLoggedIn(req, res, jwt);
+});
+
+// Change Username
+router.post('/changeusername', async (req, res) => {
+  username.handleUsername(req, res, jwt);
 });
 
 module.exports = router;
