@@ -93,11 +93,16 @@ npm start
 
 - Error handling: Another challenge I faced was handling errors properly. This involved understanding how to properly handle errors on both the client and server side. I had to ensure that the system would handle errors in a way that was user-friendly and provided meaningful feedback to the user. I also had to ensure that the system would not break if an error occurred. To overcome this challenge, I made sure to properly test the system and added error handling code in the necessary areas.
 
+- Implementing User Info Changes: When building the feature that allowed users to change their information, I initially ran into a problem where I was creating a new object instead of updating the existing user object. To resolve this, I first verified that the user was changing the correct account information. Then, using the new data provided by the user, I updated the corresponding property of the user object.
+
 ## Future Improvements
 
 - Add forgot password functionality
 - Add email verification feature
-- change name, username, password, email, and profile picture
+- change first name, lastname, username, password, and email ✅
+- change profile picture
+- wishlist functionality
+- settings
 
 ## Authors
 
