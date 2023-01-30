@@ -1,6 +1,6 @@
 const username = require('./changeUsername');
 const firstName = require('./changeFirstname');
-const lastName = require('./changeLastname');
+const lastName = require('./changeLastName');
 const email = require('./changeEmail');
 const password = require('./changePassword');
 
