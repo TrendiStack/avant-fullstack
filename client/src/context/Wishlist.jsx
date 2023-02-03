@@ -108,7 +108,7 @@ const WishlistProvider = ({ children }) => {
       }
       try {
         const { data } = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/wishlist/`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/wishlist`,
           {
             headers: { 'auth-token': token, 'user-email': email },
           }
