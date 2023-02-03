@@ -6,14 +6,22 @@ import Layout from '../components/Layout';
 import QuantityButton from '../components/QuantityButton';
 import RecommendedItems from '../components/product/RecommendedItems';
 import SizeIcon from '../components/product/SizeIcon';
+import { CartContext } from '../context/CartContext';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
+import { WishlistContext } from '../context/Wishlist';
+import { AuthContext } from '../context/AuthContext';
 
 const Product = () => {
   const [cartButton, setCartButton] = useState('ADD TO CART');
   const [itemQuantity, setItemQuantity] = useState(1);
   const { productID } = useParams();
 
-  const { product, products, setProduct, addToCart } =
-    useContext(MockDataContext);
+  const { product, products, setProduct } = useContext(MockDataContext);
+  const { addToCart } = useContext(CartContext);
+  const { addToWishlist, isInWishlist, removeFromWishlist } =
+    useContext(WishlistContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
   const filteredProduct = products.filter(
     product => product.id === parseInt(productID)
@@ -21,6 +29,7 @@ const Product = () => {
 
   const sizes = ['XS', 'S', 'M', 'L', 'XL'];
 
+  // Cart Functions
   const handleCart = () => {
     if (product.size === '') {
       alert('Please select a size');
@@ -43,6 +52,16 @@ const Product = () => {
   useEffect(() => {
     setProduct(filteredProduct);
   }, [filteredProduct, setProduct]);
+
+  // Wishlist Functions
+
+  const handleWishlist = async () => {
+    if (isInWishlist(product)) {
+      await removeFromWishlist(product);
+    } else {
+      await addToWishlist(product);
+    }
+  };
 
   return (
     <article>
@@ -77,6 +96,28 @@ const Product = () => {
             decreaseQuantity={decreaseQuantity}
             quantity={itemQuantity}
           />
+          <button
+            onClick={handleWishlist}
+            className={`flex items-center justify-center gap-2 bg-black text-white dark:bg-white dark:text-black py-2 font-semibold hover:bg-neutral-300 hover:text-black dark:hover:bg-neutral-800 dark:hover:text-white duration-500 mt-2 
+            ${
+              isInWishlist(product)
+                ? "before:content-['REMOVE_FROM_WISHLIST'] "
+                : "before:content-['ADD_TO_WISHLIST'] "
+            }
+            
+             ${
+               isAuthenticated
+                 ? ''
+                 : "hover:before:content-['SIGN_IN_TO_ADD_TO_WISHLIST']"
+             }
+            `}
+          >
+            {isInWishlist(product) ? (
+              <AiFillHeart className="text-red-500" />
+            ) : (
+              <AiOutlineHeart className="text-black" />
+            )}
+          </button>
           <button
             onMouseEnter={addToCartHover}
             onMouseLeave={() => setCartButton('ADD TO CART')}

@@ -33,13 +33,9 @@ const handeChangePassword = async (req, res, jwt, bcrypt) => {
   user.password = hash;
   await user.save();
 
-  // Create and assign a token
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-
   // send updated user info to client
   res.json({
     msg: 'Password updated',
-    token,
     user: {
       id: user._id,
       firstName: user.firstName,

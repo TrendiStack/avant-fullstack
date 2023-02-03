@@ -1,4 +1,6 @@
 import ProductOverlay from './ProductOverlay';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 
 const Item = ({ item }) => {
   return (
@@ -10,9 +12,12 @@ const Item = ({ item }) => {
           className="w-full aspect-square object-cover"
         />
       </div>
-      <div className="font-semibold py-5 ">
-        <h1>{item.name.toUpperCase()}</h1>
-        <p>${item.price} CAD</p>
+      <div className="flex justify-between py-5">
+        <div className="font-semibold">
+          <h1>{item.name.toUpperCase()}</h1>
+          <p>${item.price} CAD</p>
+        </div>
+        <AiOutlineHeart />
       </div>
       <ProductOverlay productID={item.id} />
     </article>

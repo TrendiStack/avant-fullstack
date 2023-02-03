@@ -1,5 +1,7 @@
 const handleLogout = (req, res) => {
-  res.send('You are logged out');
+  res.clearCookie('user-email');
+  res.clearCookie('auth-token');
+  res.json({ msg: 'Logged out successfully' });
 };
 
 module.exports = {

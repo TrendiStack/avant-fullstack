@@ -14,8 +14,12 @@ export const AuthContext = createContext({
 });
 
 const AuthContextProvider = props => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem('jwt') ? true : false
+  );
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem('user')) || null
+  );
   const [errors, setErrors] = useState(null);
 
   const login = async (email, password) => {
@@ -30,7 +34,6 @@ const AuthContextProvider = props => {
       localStorage.setItem('jwt', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       setUser(JSON.parse(localStorage.getItem('user')));
-      console.log(user);
       return data;
     } catch (err) {
       console.error('Error while logging in. Error: ', err.response.data.msg);
@@ -40,15 +43,7 @@ const AuthContextProvider = props => {
 
   const logout = async () => {
     try {
-      const token = localStorage.getItem('jwt');
-      await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          withCredentials: true,
-        }
-      );
+      await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/logout`);
       setIsAuthenticated(false);
       setUser(null);
       localStorage.removeItem('jwt');
@@ -82,8 +77,9 @@ const AuthContextProvider = props => {
         { withCredentials: true }
       );
       setIsAuthenticated(true);
-      setUser(data.user);
       localStorage.setItem('jwt', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setUser(JSON.parse(localStorage.getItem('user')));
       return data;
     } catch (err) {
       console.error('Error while signing up. Error: ', err.response.data.msg);
@@ -92,20 +88,18 @@ const AuthContextProvider = props => {
   };
   const checkAuth = async () => {
     const token = localStorage.getItem('jwt');
-    const user = JSON.parse(localStorage.getItem('user'));
+
     if (!token) {
       return;
     }
     try {
-      const { data } = await axios.get(
+      await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/api/auth/loggedIn`,
-        {},
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { 'auth-token': token },
         }
       );
       setIsAuthenticated(true);
-      setUser(data.user || user);
     } catch (err) {
       console.error(
         'Error while checking authentication. Error: ',
@@ -122,7 +116,7 @@ const AuthContextProvider = props => {
     }
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/auth/${
+        `${process.env.REACT_APP_BACKEND_URL}/api/user/${
           header === 'First Name'
             ? 'changefirstname'
             : header === 'Last Name'
@@ -142,11 +136,10 @@ const AuthContextProvider = props => {
             : 'newEmail']: newData,
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { 'auth-token': token },
         }
       );
       localStorage.setItem('user', JSON.stringify(data.user));
-      localStorage.setItem('jwt', data.token);
       setUser(JSON.parse(localStorage.getItem('user')));
       return data;
     } catch (err) {
@@ -165,14 +158,14 @@ const AuthContextProvider = props => {
     }
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/auth/changepassword`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/user/changepassword`,
         {
           email: user.email,
           password,
           verifyPassword,
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { 'auth-token': token },
         }
       );
       localStorage.setItem('user', JSON.stringify(data.user));

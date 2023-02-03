@@ -29,16 +29,19 @@ const handleLogin = async (req, res, jwt, bcrypt) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     // Send token to client
-    res.json({
-      token,
-      user: {
-        id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        username: user.username,
-      },
-    });
+    res
+      .header('user-email', email)
+      .header('auth-token', token)
+      .json({
+        token,
+        user: {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          username: user.username,
+        },
+      });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

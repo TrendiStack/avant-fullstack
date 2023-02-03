@@ -24,7 +24,7 @@ const ProfileOptions = ({ profile, setProfile }) => {
               </Link>
             </li>
             <li>
-              <Link to="" onClick={() => setProfile(!profile)}>
+              <Link to="wishlist" onClick={() => setProfile(!profile)}>
                 Wishlist
               </Link>
             </li>

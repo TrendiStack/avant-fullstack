@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { MockDataContext } from '../../context/MockDataContext';
+import { CartContext } from '../../context/CartContext';
 
 const TotalItemIcon = () => {
-  const { cart } = useContext(MockDataContext);
+  const { cart } = useContext(CartContext);
   return (
     <>
       {cart.length > 0 && (

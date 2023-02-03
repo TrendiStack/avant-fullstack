@@ -28,15 +28,9 @@ const handleUsername = async (req, res, jwt) => {
   user.username = username;
   await user.save();
 
-  // Create and assign a token
-
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-
   // send token and updated user info to client
-
   res.json({
     msg: 'Username updated',
-    token,
     user: {
       id: user._id,
       firstName: user.firstName,

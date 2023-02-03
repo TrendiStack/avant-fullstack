@@ -97,11 +97,13 @@ npm start
 
 ## Future Improvements
 
+- Implemeted auth middleware for protected routes ✅
+- Make cart system server sided
+- wishlist functionality ✅
 - Add forgot password functionality
 - Add email verification feature
 - change first name, lastname, username, password, and email ✅
 - change profile picture
-- wishlist functionality
 - settings
 
 ## Authors

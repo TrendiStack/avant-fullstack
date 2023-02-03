@@ -25,6 +25,14 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  wishlist: {
+    type: Array,
+    default: [],
+  },
+  cart: {
+    type: Array,
+    default: [],
+  },
   darkMode: {
     type: Boolean,
     default: true,

@@ -30,8 +30,8 @@ app.get('/', (req, res) => res.send('API Running'));
 // Authentication
 app.use('/api/auth', require('./routers/userRouter'));
 
-// Users
-// app.use('/api/users', require('../routers/users'));
+// User Info
+app.use('/api/user', require('./routers/userInfoRouter'));
 
 // Categories
 app.use('/api/categories', require('./routers/categoriesRouter'));
@@ -47,5 +47,11 @@ app.use('/api/reviews', require('./routers/reviewsRouter'));
 
 // Payments
 app.use('/api/payment', require('./routers/stripeRouter'));
+
+// Wishlist
+app.use('/api/wishlist', require('./routers/wishlistRouter'));
+
+// Cart
+app.use('/api/cart', require('./routers/cartRouter'));
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

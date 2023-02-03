@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { MockDataContext } from '../context/MockDataContext';
 import { useContext } from 'react';
 import CartItem from '../components/CartItem';
 import Layout from '../components/Layout';
+import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
-  const { cart, cartTotal: total, checkout } = useContext(MockDataContext);
+  const { cart, cartTotal: total, checkout } = useContext(CartContext);
 
   return (
     <Layout>

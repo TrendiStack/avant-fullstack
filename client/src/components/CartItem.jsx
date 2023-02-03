@@ -1,12 +1,12 @@
 import { IoCloseOutline } from 'react-icons/io5';
-import { MockDataContext } from '../context/MockDataContext';
 import { useContext } from 'react';
 import QuantityButton from './QuantityButton';
+import { CartContext } from '../context/CartContext';
 
 const CartItem = ({ item }) => {
   const { name, image, price, quantity, size } = item;
   const { removeFromCart, decreaseQuantity, increaseQuantity } =
-    useContext(MockDataContext);
+    useContext(CartContext);
   const addItem = () => {
     increaseQuantity(item);
   };

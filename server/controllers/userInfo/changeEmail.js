@@ -23,15 +23,10 @@ const handleEmailChange = async (req, res, jwt) => {
   user.email = newEmail;
   await user.save();
 
-  // Create and assign a token
-
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-
   // send updated user info to client
-
   res.json({
     msg: 'Email updated',
-    token,
+
     user: {
       id: user._id,
       firstName: user.firstName,

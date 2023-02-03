@@ -17,6 +17,7 @@ import PageNotFound from './pages/PageNotFound';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import ChangePassword from './pages/ChangePassword';
+import Wishlist from './pages/Wishlist';
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -32,9 +33,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route
             path="profile"
-            element={
-              isAuthenticated ? <Profile /> : <Navigate to="/home/sign-in" />
-            }
+            element={isAuthenticated ? <Profile /> : <Navigate to="/home" />}
           />
           <Route
             path="sign-up"
@@ -54,6 +53,7 @@ function App() {
               )
             }
           />
+          <Route path="wishlist" element={<Wishlist />} />
           <Route path="search/:id" element={<SearchResults />} />
           <Route path="checkout" element={<Checkout />} />
         </Route>

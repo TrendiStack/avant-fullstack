@@ -1,6 +1,6 @@
 const handleLoggedIn = (req, res, jwt) => {
+  const token = req.header('auth-token');
   try {
-    const token = req.body.token;
     jwt.verify(token, process.env.JWT_SECRET);
     res.json({
       token,
@@ -8,7 +8,7 @@ const handleLoggedIn = (req, res, jwt) => {
     });
   } catch (err) {
     res.json({
-      token: null,
+      token: 'Invalid Token or you are not logged in',
       loggedIn: false,
     });
   }

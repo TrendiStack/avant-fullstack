@@ -7,6 +7,8 @@ import MockDataProvider from './context/MockDataContext';
 import ThemeContextProvider from './context/ThemeContext';
 import './index.css';
 import ScrollToTop from './components/ScrollToTop';
+import CartProvider from './context/CartContext';
+import WishlistProvider from './context/Wishlist';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,10 +16,14 @@ root.render(
     <AuthContextProvider>
       <ThemeContextProvider>
         <MockDataProvider>
-          <BrowserRouter>
-            <ScrollToTop />
-            <App />
-          </BrowserRouter>
+          <CartProvider>
+            <WishlistProvider>
+              <BrowserRouter>
+                <ScrollToTop />
+                <App />
+              </BrowserRouter>
+            </WishlistProvider>
+          </CartProvider>
         </MockDataProvider>
       </ThemeContextProvider>
     </AuthContextProvider>
