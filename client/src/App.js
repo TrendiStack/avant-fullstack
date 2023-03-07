@@ -20,7 +20,6 @@ import Success from './pages/Success';
 import Wishlist from './pages/Wishlist';
 import useLenisSmoothscroll from './hooks/useLenisSmoothscroll';
 import Verify from './pages/Verify';
-import { VerificationBanner } from './components/VerificationBanner';
 function App() {
   const { isAuthenticated, user } = useContext(AuthContext);
   useLenisSmoothscroll();

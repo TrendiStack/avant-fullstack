@@ -9,7 +9,7 @@ export const VerificationBanner = () => {
 
   return (
     <>
-      {user && show && (
+      {user && !show && (
         <div className="bg-red-500 relative z-50">
           <Layout className="text-xs md:text-md lg:text-base flex items-center justify-between w-full py-1">
             <p>
