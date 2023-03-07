@@ -63,7 +63,7 @@ const UserDataDisplay = ({ header, data, form, verification }) => {
         </form>
       ) : verification ? (
         <div className="bg-slate-200 dark:bg-zinc-900 dark:text-white py-4 rounded-xl duration-700 ">
-          {user.isVerified ? (
+          {user?.isVerified ? (
             <div className="text-green-500 flex items-center ml-3 gap-2">
               <BsPatchCheckFill />
               <p>Verified</p>

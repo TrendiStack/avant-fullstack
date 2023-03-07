@@ -5,7 +5,7 @@ import Layout from './Layout';
 
 export const VerificationBanner = () => {
   const { user } = useContext(AuthContext);
-  const [show, setShow] = useState(user.isVerified);
+  const [show, setShow] = useState(user?.isVerified);
 
   return (
     <>
