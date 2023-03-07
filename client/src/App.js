@@ -27,7 +27,6 @@ function App() {
 
   return (
     <div className="min-h-[100vh] theme">
-      <VerificationBanner />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Nav />}>
@@ -51,7 +50,7 @@ function App() {
           <Route
             path="verify"
             element={
-              !isAuthenticated || user.isVerified ? (
+              !isAuthenticated || user?.isVerified ? (
                 <Navigate to="/home" />
               ) : (
                 <Verify />

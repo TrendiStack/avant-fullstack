@@ -9,9 +9,9 @@ export const VerificationBanner = () => {
 
   return (
     <>
-      {user && !show && (
-        <Layout className="bg-red-500 relative z-50">
-          <div className="flex items-center justify-between w-full py-1">
+      {user && show && (
+        <div className="bg-red-500 relative z-50">
+          <Layout className="text-xs md:text-md lg:text-base flex items-center justify-between w-full py-1">
             <p>
               You are not verified. Please check your email to verify your
               account.
@@ -20,8 +20,8 @@ export const VerificationBanner = () => {
               className="text-2xl cursor-pointer"
               onClick={() => setShow(false)}
             />
-          </div>
-        </Layout>
+          </Layout>
+        </div>
       )}
     </>
   );

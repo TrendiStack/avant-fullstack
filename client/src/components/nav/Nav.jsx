@@ -12,6 +12,7 @@ import ProfileOptions from './ProfileOptions';
 import SearchBar from '../SearchBar';
 import ThemeToggle from '../ThemeToggle';
 import TotalItemIcon from './TotalItemIcon';
+import { VerificationBanner } from '../VerificationBanner';
 
 const Nav = () => {
   const [searchBar, setSearchBar] = useState(false);
@@ -21,6 +22,7 @@ const Nav = () => {
 
   return (
     <>
+      <VerificationBanner />
       <Layout>
         <nav className="relative flex justify-center items-center w-full py-5 text-xl border-b-[1px] border-black ">
           <div className="flex items-center gap-2 absolute left-0">
