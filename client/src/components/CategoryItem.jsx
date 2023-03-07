@@ -10,14 +10,14 @@ const CategoryItem = ({ category }) => {
   return (
     <article
       onClick={handleNavigate}
-      className="relative z-30 text-center text-white p-16 border-[1px] min-w-[15rem] w-1/4 shadow-lg shadow-neutral-900 cursor-pointer hover:scale-125 duration-300"
+      className="grayscale relative w-full lg:hover:scale-105 transition-transform duration-300 cursor-pointer"
     >
       <img
         src={category?.image}
-        className="absolute w-full top-0 left-0 h-full object-cover z-[1] grayscale"
+        className="w-full aspect-square object-cover"
         alt={category?.name}
       />
-      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[2]"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-black hover:bg-transparent bg-opacity-20 z-[2]"></div>
       <div className="relative z-10">
         <h1 className="text-2xl font-bold ">{category?.name}</h1>
         <p className="text-xl font-semibold">Explore</p>

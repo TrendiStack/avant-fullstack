@@ -1,28 +1,55 @@
+import { AuthContext } from '../context/AuthContext';
+import { useContext, useState } from 'react';
+import Layout from '../components/Layout';
 import ProfilePic from '../components/profile/ProfilePic';
 import UserDataDisplay from '../components/profile/UserDataDisplay';
-import Layout from '../components/Layout';
-import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { Link } from 'react-router-dom';
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setFile, uploadFile } = useContext(AuthContext);
+  const [showUpload, setShowUpload] = useState(true);
+
+  const handleChange = e => {
+    setFile(e.target.files[0]);
+  };
 
   return (
     <Layout>
       <div className="flex flex-col font-medium gap-5">
         <div className="flex flex-col items-center gap-3">
-          <ProfilePic data={user.firstName[0]} />
-          <p className="cursor-pointer">Change profile picture</p>
+          <ProfilePic url={user.profilePic} name={user.firstName} />
+          <form onSubmit={uploadFile}>
+            {showUpload ? (
+              <button onClick={() => setShowUpload(false)}>
+                Change Profile Pic
+              </button>
+            ) : (
+              <>
+                <label className="cursor-pointer mr-10">
+                  Change profile picture
+                  <input
+                    onChange={handleChange}
+                    type="file"
+                    name="image"
+                    className="hidden"
+                  />
+                </label>
+
+                <button onClick={() => setShowUpload(false)} type="submit">
+                  Submit
+                </button>
+              </>
+            )}
+          </form>
         </div>
         <div className="flex flex-col gap-3 ">
-          <UserDataDisplay header="First Name" data={user.firstName} />
-          <UserDataDisplay header="Last Name" data={user.lastName} />
-          <UserDataDisplay header="Username" data={user.username} />
-          <UserDataDisplay header="Email" data={user.email} />
+          <UserDataDisplay verification />
+          <UserDataDisplay form header="First Name" data={user.firstName} />
+          <UserDataDisplay form header="Last Name" data={user.lastName} />
+          <UserDataDisplay form header="Username" data={user.username} />
+          <UserDataDisplay form header="Email" data={user.email} />
+          <UserDataDisplay />
         </div>
       </div>
-      <Link to="/home/change-password"> Change Password</Link>
     </Layout>
   );
 };

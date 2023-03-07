@@ -13,27 +13,27 @@ const {
 } = require('../controllers/userInfo/index');
 
 // Change Username
-router.post('/changeusername', auth, async (req, res) => {
+router.put('/changeusername', auth, async (req, res) => {
   username.handleUsername(req, res, jwt);
 });
 
 // Change First Name
-router.post('/changefirstname', auth, async (req, res) => {
+router.put('/changefirstname', auth, async (req, res) => {
   firstName.handleFirstnameChange(req, res, jwt);
 });
 
 // Change Last Name
-router.post('/changelastname', auth, async (req, res) => {
+router.put('/changelastname', auth, async (req, res) => {
   lastName.handleLastNameChange(req, res, jwt);
 });
 
 // Change Email
-router.post('/changeemail', auth, async (req, res) => {
+router.put('/changeemail', auth, async (req, res) => {
   email.handleEmailChange(req, res, jwt);
 });
 
 // Change Password
-router.post('/changepassword', auth, async (req, res) => {
+router.put('/changepassword', auth, async (req, res) => {
   password.handlePasswordChange(req, res, jwt, bcrypt);
 });
 

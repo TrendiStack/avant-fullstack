@@ -1,6 +1,8 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { AuthContext } from './AuthContext';
+import handleCart from '../utils/cart/handleCart';
 
 export const CartContext = createContext({
   cart: [],
@@ -13,8 +15,10 @@ export const CartContext = createContext({
 });
 
 const CartProvider = ({ children }) => {
+  const { user } = useContext(AuthContext);
+  const token = localStorage.getItem('jwt');
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem('cart')) || []
+    localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
   );
   const [cartTotal, setCartTotal] = useState();
 
@@ -29,6 +33,10 @@ const CartProvider = ({ children }) => {
       window.location.assign(data.url);
     }
   };
+
+  useEffect(() => {
+    handleCart(token, user, setCart);
+  }, [token, user]);
 
   const addToCart = (product, quantity) => {
     // Check if item exist in cart
@@ -54,6 +62,22 @@ const CartProvider = ({ children }) => {
         : cartItem
     );
 
+    if (token) {
+      axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/cart/update`,
+        {
+          cart: existingItem
+            ? increasedQuantity
+            : [...cart, product]
+            ? [...changeSize, product]
+            : [...cart, product],
+        },
+        {
+          headers: { 'auth-token': token, 'user-email': user.email },
+        }
+      );
+    }
+
     // If item exist in cart increase quantity by one else add item to cart
     return existingItem
       ? setCart(increasedQuantity)
@@ -67,6 +91,19 @@ const CartProvider = ({ children }) => {
     const newCart = cart.filter(
       item => item.id !== product.id || item.size !== product.size
     );
+
+    if (token) {
+      axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/cart/update`,
+        {
+          cart: newCart,
+        },
+        {
+          headers: { 'auth-token': token, 'user-email': user.email },
+        }
+      );
+    }
+
     setCart(newCart);
   };
 
@@ -82,6 +119,21 @@ const CartProvider = ({ children }) => {
           }
         : cartItem
     );
+
+    if (token) {
+      axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/cart/update`,
+        {
+          cart: existingItem
+            ? increasedQuantity
+            : [...cart, { ...product, quantity: 1 }],
+        },
+        {
+          headers: { 'auth-token': token, 'user-email': user.email },
+        }
+      );
+    }
+
     // If item exist in cart increase quantity by one else add item to cart
     return existingItem
       ? setCart(increasedQuantity)
@@ -106,6 +158,19 @@ const CartProvider = ({ children }) => {
           }
         : cartItem
     );
+
+    if (token) {
+      axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/cart/update`,
+        {
+          cart: existingItem.quantity === 1 ? removeItem : decreasedQuantity,
+        },
+        {
+          headers: { 'auth-token': token, 'user-email': user.email },
+        }
+      );
+    }
+
     // If the existing items quantity is 1 remove the item else if the item exist decrease quantity else do nothing
     existingItem.quantity === 1
       ? setCart(removeItem)

@@ -1,9 +1,12 @@
-const handleCart = async (req, res) => {
+const handleUpdateCart = async (req, res) => {
   const email = req.header('user-email');
+  const { cart } = req.body;
 
   // Validation
   if (!email) {
     return res.status(400).json({ msg: 'Please enter an email' });
+  } else if (!cart) {
+    return res.status(400).json({ msg: 'Please enter a cart' });
   }
 
   // Check for existing user
@@ -11,15 +14,21 @@ const handleCart = async (req, res) => {
 
   if (!user) return res.status(400).json({ msg: 'User does not exist' });
 
+  // Update cart
+  user.cart = cart;
+
+  // Save updated user
+  const updatedUser = await user.save();
+
   // send updated user info to client
   res.json({
-    msg: 'Cart retrieved',
+    msg: 'Cart updated',
     user: {
-      cart: user.cart,
+      cart: updatedUser.cart,
     },
   });
 };
 
 module.exports = {
-  handleCart: handleCart,
+  handleUpdateCart: handleUpdateCart,
 };

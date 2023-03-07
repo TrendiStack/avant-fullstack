@@ -1,6 +1,6 @@
 import { AuthContext } from '../../context/AuthContext';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FormButton from '../form/FormButton';
 import FormLabel from '../form/FormLabel';
 import Layout from '../../components/Layout';
@@ -14,8 +14,7 @@ const SignInForm = () => {
   const signIn = async e => {
     e.preventDefault();
     try {
-      const data = await login(email, password);
-      console.log(data);
+      await login(email, password);
       if (isAuthenticated) {
         navigate('/home');
       }
@@ -47,13 +46,16 @@ const SignInForm = () => {
         />
         <p>
           Don't have an account?{' '}
-          <span className="font-bold cursor-pointer hover:text-neutral-500 transition-all duration-500">
+          <Link
+            to="/home/sign-up"
+            className="font-bold cursor-pointer hover:text-neutral-500 transition-all duration-500"
+          >
             Sign Up
-          </span>
+          </Link>
           !
         </p>
         <FormButton label="Sign In" />
-        <FormButton google={true} />
+        {/* <FormButton google={true} /> */}
       </form>
     </Layout>
   );

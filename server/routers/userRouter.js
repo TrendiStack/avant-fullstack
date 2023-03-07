@@ -8,26 +8,32 @@ const {
   login,
   logout,
   loggedIn,
+  verifyEmail,
 } = require('../controllers/auth/index');
 
 // Register
 router.post('/', async (req, res) => {
-  register.handleRegister(req, res, jwt, bcrypt);
+  register(req, res, jwt, bcrypt);
 });
 
 // Login
 router.post('/login', async (req, res) => {
-  login.handleLogin(req, res, jwt, bcrypt);
+  login(req, res, jwt, bcrypt);
 });
 
 // Logout
 router.get('/logout', (req, res) => {
-  logout.handleLogout(req, res);
+  logout(req, res);
 });
 
 // Logged In
 router.get('/loggedin', (req, res) => {
-  loggedIn.handleLoggedIn(req, res, jwt);
+  loggedIn(req, res, jwt);
+});
+
+// Verify Email
+router.get('/verify-email/:id/:token', async (req, res) => {
+  verifyEmail(req, res, jwt);
 });
 
 module.exports = router;

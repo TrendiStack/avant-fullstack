@@ -42,6 +42,7 @@ const handeChangePassword = async (req, res, jwt, bcrypt) => {
       lastName: user.lastName,
       email: user.email,
       username: user.username,
+      profilePic: user.profilePic,
     },
   });
 };

@@ -1,28 +1,33 @@
+import { AuthContext } from './context/AuthContext';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { SearchResults } from './pages/SearchResults';
+import { useContext } from 'react';
 import Cart from './pages/Cart';
+import ChangePassword from './pages/ChangePassword';
 import Checkout from './pages/Checkout';
 import Footer from './components/footer/Footer';
 import Home from './pages/Home';
 import Landing from './pages/Landing';
 import Nav from './components/nav/Nav';
+import PageNotFound from './pages/PageNotFound';
 import Product from './pages/Product';
+import Products from './pages/Products';
+import Profile from './pages/Profile';
 import Shop from './pages/Shop';
 import SignIn from './pages/SignIn.jsx';
 import SignUp from './pages/SighUp.jsx';
-import Profile from './pages/Profile';
-import Products from './pages/Products';
 import Success from './pages/Success';
-import PageNotFound from './pages/PageNotFound';
-import { useContext } from 'react';
-import { AuthContext } from './context/AuthContext';
-import ChangePassword from './pages/ChangePassword';
 import Wishlist from './pages/Wishlist';
-
+import useLenisSmoothscroll from './hooks/useLenisSmoothscroll';
+import Verify from './pages/Verify';
+import { VerificationBanner } from './components/VerificationBanner';
 function App() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, user } = useContext(AuthContext);
+  useLenisSmoothscroll();
+
   return (
     <div className="min-h-[100vh] theme">
+      <VerificationBanner />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Nav />}>
@@ -42,6 +47,16 @@ function App() {
           <Route
             path="sign-in"
             element={isAuthenticated ? <Navigate to="/home" /> : <SignIn />}
+          />
+          <Route
+            path="verify"
+            element={
+              !isAuthenticated || user.isVerified ? (
+                <Navigate to="/home" />
+              ) : (
+                <Verify />
+              )
+            }
           />
           <Route
             path="change-password"

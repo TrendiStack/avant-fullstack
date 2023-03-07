@@ -14,6 +14,4 @@ const handleLoggedIn = (req, res, jwt) => {
   }
 };
 
-module.exports = {
-  handleLoggedIn: handleLoggedIn,
-};
+module.exports = handleLoggedIn;

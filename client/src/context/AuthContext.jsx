@@ -11,6 +11,8 @@ export const AuthContext = createContext({
   handleUpdate: () => {},
   setErrors: () => {},
   handlePasswordUpdate: () => {},
+  setFile: () => {},
+  uploadFile: () => {},
 });
 
 const AuthContextProvider = props => {
@@ -21,6 +23,8 @@ const AuthContextProvider = props => {
     JSON.parse(localStorage.getItem('user')) || null
   );
   const [errors, setErrors] = useState(null);
+
+  const [file, setFile] = useState(null);
 
   const login = async (email, password) => {
     try {
@@ -65,7 +69,7 @@ const AuthContextProvider = props => {
   ) => {
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth`,
         {
           firstName,
           lastName,
@@ -115,7 +119,7 @@ const AuthContextProvider = props => {
       return;
     }
     try {
-      const { data } = await axios.post(
+      const { data } = await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/api/user/${
           header === 'First Name'
             ? 'changefirstname'
@@ -157,7 +161,7 @@ const AuthContextProvider = props => {
       return;
     }
     try {
-      const { data } = await axios.post(
+      const { data } = await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/api/user/changepassword`,
         {
           email: user.email,
@@ -181,6 +185,30 @@ const AuthContextProvider = props => {
     }
   };
 
+  const uploadFile = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', file);
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/upload`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'auth-token': localStorage.getItem('jwt'),
+            'user-email': user.email,
+          },
+        }
+      );
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setUser(JSON.parse(localStorage.getItem('user')));
+    } catch (err) {
+      console.log(err.response.data.msg);
+      setErrors(err.response.data.msg);
+    }
+  };
+
   useEffect(() => {
     checkAuth();
   }, []);
@@ -195,6 +223,8 @@ const AuthContextProvider = props => {
     setErrors,
     handleUpdate,
     handlePasswordUpdate,
+    setFile,
+    uploadFile,
   };
 
   return (

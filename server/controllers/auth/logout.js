@@ -4,6 +4,4 @@ const handleLogout = (req, res) => {
   res.json({ msg: 'Logged out successfully' });
 };
 
-module.exports = {
-  handleLogout: handleLogout,
-};
+module.exports = handleLogout;

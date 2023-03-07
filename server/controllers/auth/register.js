@@ -1,4 +1,5 @@
 const { validateEmail } = require('../validators/validateEmail');
+const sendEmail = require('../../utils/email');
 
 const handleRegister = async (req, res, jwt, bcrypt) => {
   const { firstName, lastName, email, username, password, passwordVerify } =
@@ -48,6 +49,7 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
       email,
       username,
       password: passwordHash,
+      profilePic: '',
     });
 
     const savedUser = await newUser.save();
@@ -55,6 +57,11 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
     //login the user
 
     const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET);
+
+    // Send verification email
+    const subject = 'Verify your email';
+    const text = `Please click the link below to verify your email address: ${process.env.BACKEND_URL}/api/auth/verify-email/${savedUser._id}/${token}`;
+    sendEmail(email, subject, text);
 
     // send token to client
     res
@@ -67,7 +74,9 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
           firstName: savedUser.firstName,
           lastName: savedUser.lastName,
           email: savedUser.email,
+          isVerified: savedUser.isVerified,
           username: savedUser.username,
+          profilePic: savedUser.profilePic,
         },
       });
   } catch (err) {
@@ -76,6 +85,4 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
   }
 };
 
-module.exports = {
-  handleRegister: handleRegister,
-};
+module.exports = handleRegister;

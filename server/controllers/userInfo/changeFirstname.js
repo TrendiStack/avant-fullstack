@@ -35,6 +35,7 @@ const handleFirstNameChange = async (req, res, jwt) => {
       lastName: user.lastName,
       email: user.email,
       username: user.username,
+      profilePic: user.profilePic,
     },
   });
 };

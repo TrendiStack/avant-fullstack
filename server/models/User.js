@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
   wishlist: {
     type: Array,
     default: [],
@@ -36,6 +40,10 @@ const userSchema = new mongoose.Schema({
   darkMode: {
     type: Boolean,
     default: true,
+  },
+  profilePic: {
+    type: String,
+    default: '',
   },
 });
 

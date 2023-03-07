@@ -54,4 +54,7 @@ app.use('/api/wishlist', require('./routers/wishlistRouter'));
 // Cart
 app.use('/api/cart', require('./routers/cartRouter'));
 
+// upload image
+app.use('/api/upload', require('./routers/uploadRouter'));
+
 app.listen(port, () => console.log(`Server started on port ${port}`));

@@ -1,6 +1,6 @@
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import FormButton from '../form/FormButton';
 import FormLabel from '../form/FormLabel';
@@ -13,11 +13,8 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVerify, setPasswordVerify] = useState('');
-  const { errors, signup } = useContext(AuthContext);
+  const { isAuthenticated, errors, signup } = useContext(AuthContext);
   const navigate = useNavigate();
-  const toSignIn = () => {
-    navigate('/home/sign-in');
-  };
 
   const signUp = async e => {
     e.preventDefault();
@@ -30,7 +27,9 @@ const SignUpForm = () => {
         password,
         passwordVerify
       );
-      navigate('/home');
+      if (isAuthenticated) {
+        navigate('/home');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -87,12 +86,12 @@ const SignUpForm = () => {
         />
         <p>
           Already have an account?{' '}
-          <span
-            onClick={toSignIn}
-            className="text-blue-500 cursor-pointer hover:text-blue-900 transition-all duration-500"
+          <Link
+            to="/home/sign-in"
+            className="font-bold cursor-pointer hover:text-neutral-500 transition-all duration-500"
           >
             Sign In
-          </span>
+          </Link>
           .
         </p>
         <FormButton label="Sign Up" />

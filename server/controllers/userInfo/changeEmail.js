@@ -26,13 +26,13 @@ const handleEmailChange = async (req, res, jwt) => {
   // send updated user info to client
   res.json({
     msg: 'Email updated',
-
     user: {
       id: user._id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       username: user.username,
+      profilePic: user.profilePic,
     },
   });
 };

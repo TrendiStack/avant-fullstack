@@ -39,7 +39,9 @@ const handleLogin = async (req, res, jwt, bcrypt) => {
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
+          isVerified: user.isVerified,
           username: user.username,
+          profilePic: user.profilePic,
         },
       });
   } catch (err) {
@@ -48,6 +50,4 @@ const handleLogin = async (req, res, jwt, bcrypt) => {
   }
 };
 
-module.exports = {
-  handleLogin: handleLogin,
-};
+module.exports = handleLogin;
