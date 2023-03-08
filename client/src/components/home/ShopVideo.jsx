@@ -1,4 +1,3 @@
-import Venice from '../../assets/videos/Venice.mp4';
 const ShopVideo = () => {
   return (
     <div
@@ -11,7 +10,7 @@ const ShopVideo = () => {
                 loop
                 playsinline
                 >
-                <source src="${Venice}" type="video/mp4">
+                <source src="https://bobward-image-bucket.s3.ca-central-1.amazonaws.com/Venice.mp4" type="video/mp4">
                 </video>`,
       }}
     />

@@ -1,8 +1,6 @@
 import { GiSpeaker, GiSpeakerOff } from 'react-icons/gi';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import crossingVideo from '../../assets/videos/shibuya crossing.mp4';
-import laMusica from "../../assets/sounds/Falkor's Return.mp3";
 
 const Landing = () => {
   const musicRef = useRef(null);
@@ -67,7 +65,12 @@ const Landing = () => {
           <GiSpeakerOff className="text-4xl text-white" onClick={handleMusic} />
         )}
       </div>
-      <audio ref={musicRef} src={laMusica} autoPlay loop></audio>
+      <audio
+        ref={musicRef}
+        src="https://bobward-image-bucket.s3.ca-central-1.amazonaws.com/Falkor's+Return.mp3"
+        autoPlay
+        loop
+      ></audio>
       <div
         dangerouslySetInnerHTML={{
           __html: `<video
@@ -78,7 +81,7 @@ const Landing = () => {
           id="myVideo"
           playsinline
           >
-          <source src="${crossingVideo}" type="video/mp4">
+          <source src="https://bobward-image-bucket.s3.ca-central-1.amazonaws.com/shibuya+crossing.mp4" type="video/mp4">
           </video>`,
         }}
       />

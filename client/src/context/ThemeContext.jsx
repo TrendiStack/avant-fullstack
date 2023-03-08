@@ -6,25 +6,29 @@ export const ThemeContext = createContext({
 });
 
 const ThemeContextProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(undefined);
-  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+  const systemThemeDark = window.matchMedia(
+    '(prefers-color-scheme: dark)'
+  ).matches;
+
+  const [darkMode, setDarkMode] = useState(
+    systemThemeDark
+      ? localStorage.getItem('darkMode') !== 'false'
+      : localStorage.getItem('darkMode') === 'true'
+  );
 
   const switchTheme = () => {
-    setDarkMode(!darkMode);
+    setDarkMode(prev => !prev);
   };
 
   useEffect(() => {
     if (darkMode) {
       localStorage.setItem('darkMode', 'true');
       window.document.body.classList.add('dark');
-    } else if (darkMode === false) {
+    } else {
       localStorage.setItem('darkMode', 'false');
       window.document.body.classList.remove('dark');
-    } else {
-      setDarkMode(isDarkMode);
-      isDarkMode && window.document.body.classList.add('dark');
     }
-  }, [darkMode, isDarkMode]);
+  }, [darkMode]);
 
   const value = {
     darkMode,
@@ -36,3 +40,13 @@ const ThemeContextProvider = ({ children }) => {
 };
 
 export default ThemeContextProvider;
+// if (darkMode) {
+//   localStorage.setItem('darkMode', 'true');
+//   window.document.body.classList.add('dark');
+// } else if (darkMode === false) {
+//   localStorage.setItem('darkMode', 'false');
+//   window.document.body.classList.remove('dark');
+// } else {
+//   setDarkMode(isDarkMode);
+//   isDarkMode && window.document.body.classList.add('dark');
+// }

@@ -9,7 +9,7 @@ export const VerificationBanner = () => {
 
   return (
     <>
-      {user && !show && (
+      {user && show === false && (
         <div className="bg-red-500 relative z-50">
           <Layout className="text-xs md:text-md lg:text-base flex items-center justify-between w-full py-1">
             <p>
@@ -18,7 +18,7 @@ export const VerificationBanner = () => {
             </p>
             <IoIosClose
               className="text-2xl cursor-pointer"
-              onClick={() => setShow(false)}
+              onClick={() => setShow(!show)}
             />
           </Layout>
         </div>
