@@ -107,6 +107,7 @@ npm start
 - change profile picture ✅
 - Store product, collection and category data in database ✅
 - Fix search functionality ✅
+- default theme to device setting ✅
 
 ### Uncompleted
 
@@ -115,7 +116,7 @@ npm start
 - Setup Newsletter
 - Add forgot password functionality
 - Make theme toggle smoother
-- default theme to device setting
+
 - settings
 
 ## Authors
