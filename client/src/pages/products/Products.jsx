@@ -1,8 +1,8 @@
-import { MockDataContext } from '../context/MockDataContext';
+import { MockDataContext } from '../../context/MockDataContext';
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import Item from '../components/Item';
-import Layout from '../components/Layout';
+import Item from '../../components/Item';
+import Layout from '../../components/Layout';
 
 const Products = () => {
   const { products } = useContext(MockDataContext);

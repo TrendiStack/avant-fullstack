@@ -26,7 +26,7 @@ const MockDataProvider = ({ children }) => {
         `${process.env.REACT_APP_BACKEND_URL}/api/products`
       );
       // add size and quantity to each product
-      const newArr = data.products.map(product => ({
+      const newArr = data.map(product => ({
         ...product,
         size: '',
         quantity: 1,
@@ -44,7 +44,7 @@ const MockDataProvider = ({ children }) => {
         `${process.env.REACT_APP_BACKEND_URL}/api/categories`
       );
       // Set Data to state variable
-      setCategories(data.categories);
+      setCategories(data);
     } catch (err) {
       console.log(err);
     }
@@ -57,7 +57,7 @@ const MockDataProvider = ({ children }) => {
         `${process.env.REACT_APP_BACKEND_URL}/api/collections`
       );
       // Set Data to state variable
-      setCollections(data.collections);
+      setCollections(data);
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +70,7 @@ const MockDataProvider = ({ children }) => {
         `${process.env.REACT_APP_BACKEND_URL}/api/reviews`
       );
       // Set Data to state variable
-      setReviews(data.reviews);
+      setReviews(data);
     } catch (err) {
       console.log(err);
     }

@@ -1,8 +1,8 @@
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import { useContext, useState } from 'react';
-import Layout from '../components/Layout';
-import ProfilePic from '../components/profile/ProfilePic';
-import UserDataDisplay from '../components/profile/UserDataDisplay';
+import Layout from '../../components/Layout';
+import ProfilePic from '../../components/profile/ProfilePic';
+import UserDataDisplay from '../../components/profile/UserDataDisplay';
 
 const Profile = () => {
   const { user, setFile, uploadFile } = useContext(AuthContext);

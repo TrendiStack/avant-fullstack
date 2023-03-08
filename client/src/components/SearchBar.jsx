@@ -5,7 +5,7 @@ const SearchBar = ({ searchBar }) => {
   const [userInput, setUserInput] = useState('');
   const navigate = useNavigate();
   const handleSearch = () => {
-    navigate(`/search/${userInput}`);
+    navigate(`search/results/${userInput}`);
     setUserInput('');
   };
 

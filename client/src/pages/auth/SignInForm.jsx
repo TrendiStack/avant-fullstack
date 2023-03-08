@@ -1,8 +1,8 @@
 import { AuthContext } from '../../context/AuthContext';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import FormButton from '../form/FormButton';
-import FormLabel from '../form/FormLabel';
+import FormButton from '../../components/form/FormButton';
+import FormLabel from '../../components/form/FormLabel';
 import Layout from '../../components/Layout';
 
 const SignInForm = () => {

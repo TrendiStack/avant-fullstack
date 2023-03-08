@@ -24,7 +24,7 @@ const Nav = () => {
     <>
       <VerificationBanner />
       <Layout>
-        <nav className="relative flex justify-center items-center w-full py-5 text-xl border-b-[1px] border-black ">
+        <nav className="relative flex justify-center items-center w-full py-6 text-xl">
           <div className="flex items-center gap-2 absolute left-0">
             <MenuIcon menu={menu} setMenu={setMenu} />
             <Link
@@ -39,7 +39,7 @@ const Nav = () => {
               avant
             </h1>
           </Link>
-          <div className="absolute right-0 flex items-center gap-2 lg:gap-3">
+          <div className="absolute right-0 flex items-center justify-center gap-2 lg:gap-3">
             <SearchBar searchBar={searchBar} />
             <ThemeToggle />
             <AiOutlineSearch

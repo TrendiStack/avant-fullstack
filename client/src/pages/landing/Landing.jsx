@@ -1,8 +1,8 @@
 import { GiSpeaker, GiSpeakerOff } from 'react-icons/gi';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import crossingVideo from '../assets/videos/shibuya crossing.mp4';
-import laMusica from "../assets/sounds/Falkor's Return.mp3";
+import crossingVideo from '../../assets/videos/shibuya crossing.mp4';
+import laMusica from "../../assets/sounds/Falkor's Return.mp3";
 
 const Landing = () => {
   const musicRef = useRef(null);

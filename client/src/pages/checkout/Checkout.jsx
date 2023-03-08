@@ -1,9 +1,9 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
-import CheckoutForm from '../components/checkout/CheckoutForm';
-import Layout from '../components/Layout';
-import Payment from '../components/checkout/Payment';
+import CheckoutForm from '../../components/checkout/CheckoutForm';
+import Layout from '../../components/Layout';
+import Payment from '../../components/checkout/Payment';
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);

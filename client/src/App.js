@@ -1,25 +1,27 @@
 import { AuthContext } from './context/AuthContext';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { SearchResults } from './pages/SearchResults';
 import { useContext } from 'react';
-import Cart from './pages/Cart';
-import ChangePassword from './pages/ChangePassword';
-import Checkout from './pages/Checkout';
 import Footer from './components/footer/Footer';
-import Home from './pages/Home';
-import Landing from './pages/Landing';
 import Nav from './components/nav/Nav';
-import PageNotFound from './pages/PageNotFound';
-import Product from './pages/Product';
-import Products from './pages/Products';
-import Profile from './pages/Profile';
-import Shop from './pages/Shop';
-import SignIn from './pages/SignIn.jsx';
-import SignUp from './pages/SighUp.jsx';
-import Success from './pages/Success';
-import Wishlist from './pages/Wishlist';
 import useLenisSmoothscroll from './hooks/useLenisSmoothscroll';
-import Verify from './pages/Verify';
+import {
+  Landing,
+  Home,
+  Categories,
+  Products,
+  Product,
+  Cart,
+  Profile,
+  SignUpForm,
+  SignInForm,
+  Verify,
+  ChangePassword,
+  Wishlist,
+  SearchResults,
+  Checkout,
+  Success,
+  PageNotFound,
+} from './pages/index.js';
 function App() {
   const { isAuthenticated, user } = useContext(AuthContext);
   useLenisSmoothscroll();
@@ -30,7 +32,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Nav />}>
           <Route index element={<Home />} />
-          <Route path="shop/categories/" element={<Shop />} />
+          <Route path="shop/categories/" element={<Categories />} />
           <Route path="shop/categories/:category" element={<Products />} />
           <Route path="product/:productID" element={<Product />} />
           <Route path="cart" element={<Cart />} />
@@ -40,11 +42,11 @@ function App() {
           />
           <Route
             path="sign-up"
-            element={isAuthenticated ? <Navigate to="/home" /> : <SignUp />}
+            element={isAuthenticated ? <Navigate to="/home" /> : <SignUpForm />}
           />
           <Route
             path="sign-in"
-            element={isAuthenticated ? <Navigate to="/home" /> : <SignIn />}
+            element={isAuthenticated ? <Navigate to="/home" /> : <SignInForm />}
           />
           <Route
             path="verify"
@@ -67,7 +69,7 @@ function App() {
             }
           />
           <Route path="wishlist" element={<Wishlist />} />
-          <Route path="search/:id" element={<SearchResults />} />
+          <Route path="search/results/:query" element={<SearchResults />} />
           <Route path="checkout" element={<Checkout />} />
         </Route>
         <Route path="/success" element={<Success />} />

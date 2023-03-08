@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import { MockDataContext } from '../context/MockDataContext';
+import { MockDataContext } from '../../context/MockDataContext';
 import { useContext } from 'react';
-import CategoriesSwiper from '../components/home/CategoriesSwiper';
-import Layout from '../components/Layout';
-import ReviewSwiper from '../components/ReviewSwiper';
-import ShopVideo from '../components/home/ShopVideo';
+import CategoriesSwiper from '../../components/home/CategoriesSwiper';
+import Layout from '../../components/Layout';
+import ReviewSwiper from '../../components/ReviewSwiper';
+import ShopVideo from '../../components/home/ShopVideo';
+import ScrollToTop from '../../components/ScrollToTop';
 
 const Home = () => {
   const { categories, collections } = useContext(MockDataContext);

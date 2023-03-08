@@ -97,13 +97,25 @@ npm start
 
 ## Future Improvements
 
+### Completed
+
 - Implemeted auth middleware for protected routes ✅
 - Make cart system server sided ✅
 - wishlist functionality ✅
-- Add forgot password functionality
 - Add email verification feature ✅
 - change first name, lastname, username, password, and email ✅
 - change profile picture ✅
+- Store product, collection and category data in database ✅
+- Fix search functionality ✅
+
+### Uncompleted
+
+- Add functionality to Footer
+- Make Term of service Page
+- Setup Newsletter
+- Add forgot password functionality
+- Make theme toggle smoother
+- default theme to device setting
 - settings
 
 ## Authors

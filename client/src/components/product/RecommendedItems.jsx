@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ItemSmall from '../ItemSmall';
+import Item from '../Item';
 
 const RecommendedItems = ({ product }) => {
   const [products, setProducts] = useState([]);
@@ -13,7 +13,7 @@ const RecommendedItems = ({ product }) => {
         const { data } = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/api/products`
         );
-        const randomize = [...data.products].sort(() => Math.random() - 0.5);
+        const randomize = [...data].sort(() => Math.random() - 0.5);
         setProducts(randomize);
         setLoading(false);
       } catch (err) {
@@ -32,7 +32,7 @@ const RecommendedItems = ({ product }) => {
         {products
           ?.filter(item => item.category === category && item.id !== product.id)
           .map(product => (
-            <ItemSmall key={product.id} product={product} />
+            <Item key={product.id} item={product} recommendedItem />
           ))}
       </div>
     </article>

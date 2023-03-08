@@ -2,9 +2,9 @@ import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import FormButton from '../form/FormButton';
-import FormLabel from '../form/FormLabel';
-import Layout from '../Layout';
+import FormButton from '../../components/form/FormButton';
+import FormLabel from '../../components/form/FormLabel';
+import Layout from '../../components/Layout';
 
 const SignUpForm = () => {
   const [firstName, setFirstName] = useState('');

@@ -9,9 +9,11 @@ const User = require('../models/User');
 
 // Multer Config
 const storage = multer.diskStorage({
+  // Destination to store image
   destination: (req, file, cb) => {
     cb(null, 'images');
   },
+  // Filename of image
   filename: (req, file, cb) => {
     cb(
       null,

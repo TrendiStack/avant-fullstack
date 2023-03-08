@@ -1,16 +1,16 @@
-import { MockDataContext } from '../context/MockDataContext';
+import { MockDataContext } from '../../context/MockDataContext';
 import { useContext, useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Layout from '../components/Layout';
-import QuantityButton from '../components/QuantityButton';
-import RecommendedItems from '../components/product/RecommendedItems';
-import SizeIcon from '../components/product/SizeIcon';
-import { CartContext } from '../context/CartContext';
+import Layout from '../../components/Layout';
+import QuantityButton from '../../components/QuantityButton';
+import RecommendedItems from '../../components/product/RecommendedItems';
+import SizeIcon from '../../components/product/SizeIcon';
+import { CartContext } from '../../context/CartContext';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
-import { WishlistContext } from '../context/Wishlist';
-import { AuthContext } from '../context/AuthContext';
+import { WishlistContext } from '../../context/Wishlist';
+import { AuthContext } from '../../context/AuthContext';
 
 const Product = () => {
   const [cartButton, setCartButton] = useState('ADD TO CART');

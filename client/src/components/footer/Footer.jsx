@@ -99,15 +99,14 @@ const Footer = () => {
             <Layout className="flex justify-between text-white">
               <p className="text-sm">
                 © 2023 <span className="font-semibold">AVANT</span>, All Rights
-                Reserved.
-                {/* Designed by{' '}
-            <a
-              href="https://www.linkedin.com/in/terel-phillips/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Terel Phillips
-            </a> */}
+                Reserved. Designed by{' '}
+                <a
+                  href="https://www.linkedin.com/in/terel-phillips/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Terel Phillips
+                </a>
               </p>
               <p>
                 <a
