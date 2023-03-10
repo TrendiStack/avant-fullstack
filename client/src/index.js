@@ -6,9 +6,9 @@ import AuthContextProvider from './context/AuthContext';
 import MockDataProvider from './context/MockDataContext';
 import ThemeContextProvider from './context/ThemeContext';
 import './index.css';
-import ScrollToTop from './components/ScrollToTop';
 import CartProvider from './context/CartContext';
 import WishlistProvider from './context/Wishlist';
+import ScrollToTop from './components/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

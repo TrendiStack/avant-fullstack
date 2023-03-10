@@ -108,6 +108,7 @@ npm start
 - Store product, collection and category data in database ✅
 - Fix search functionality ✅
 - default theme to device setting ✅
+- Improve scroll to top functionality ✅
 
 ### Uncompleted
 
@@ -116,7 +117,6 @@ npm start
 - Setup Newsletter
 - Add forgot password functionality
 - Make theme toggle smoother
-
 - settings
 
 ## Authors

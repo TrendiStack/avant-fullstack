@@ -3,7 +3,6 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import Footer from './components/footer/Footer';
 import Nav from './components/nav/Nav';
-import useLenisSmoothscroll from './hooks/useLenisSmoothscroll';
 import {
   Landing,
   Home,
@@ -24,7 +23,6 @@ import {
 } from './pages/index.js';
 function App() {
   const { isAuthenticated, user } = useContext(AuthContext);
-  useLenisSmoothscroll();
 
   return (
     <div className="min-h-[100vh] theme">
