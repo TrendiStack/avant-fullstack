@@ -1,16 +1,17 @@
+import { AiFillHeart } from 'react-icons/ai';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { AuthContext } from '../../context/AuthContext';
+import { CartContext } from '../../context/CartContext';
 import { MockDataContext } from '../../context/MockDataContext';
 import { useContext, useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { WishlistContext } from '../../context/Wishlist';
 import Layout from '../../components/Layout';
+import ProductImage from './ProductImage';
 import QuantityButton from '../../components/QuantityButton';
 import RecommendedItems from '../../components/product/RecommendedItems';
 import SizeIcon from '../../components/product/SizeIcon';
-import { CartContext } from '../../context/CartContext';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { AiFillHeart } from 'react-icons/ai';
-import { WishlistContext } from '../../context/Wishlist';
-import { AuthContext } from '../../context/AuthContext';
 
 const Product = () => {
   const [cartButton, setCartButton] = useState('ADD TO CART');
@@ -66,13 +67,7 @@ const Product = () => {
   return (
     <article>
       <Layout className="grid grid1 md:grid-cols-2 gap-4 md:gap-10 lg:gap-40">
-        <div className="max-h-[500px] md:max-h-[600px]">
-          <img
-            src={product?.image}
-            alt={product?.name}
-            className="h-full w-full object-cover"
-          />
-        </div>
+        <ProductImage product={product} />
         <div className="flex flex-col gap-2">
           <h1 className="text-xl font-semibold">{product?.name}</h1>
           <p className="font-semibold">${product?.price} CAD</p>
