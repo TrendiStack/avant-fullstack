@@ -112,6 +112,7 @@ npm start
 
 ### Uncompleted
 
+- Zoom functionality when hovering over product image
 - Add functionality to Footer
 - Make Term of service Page
 - Setup Newsletter
