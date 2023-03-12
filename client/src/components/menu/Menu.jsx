@@ -56,7 +56,7 @@ const Menu = ({ menu, setMenu, isAuthenticated }) => {
             <Link to="/home">Home</Link>
           </li>
           <li onClick={() => setMenu(false)} className="menu-item">
-            <Link to="/home/profile">Profile</Link>
+            <Link to="/home/Account">Account</Link>
           </li>
 
           <li onClick={() => setMenu(false)} className="menu-item">

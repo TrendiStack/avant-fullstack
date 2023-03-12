@@ -12,11 +12,13 @@ import ProductImage from './ProductImage';
 import QuantityButton from '../../components/QuantityButton';
 import RecommendedItems from '../../components/product/RecommendedItems';
 import SizeIcon from '../../components/product/SizeIcon';
+import { TitleContext } from '../../context/TitleContext';
 
 const Product = () => {
   const [cartButton, setCartButton] = useState('ADD TO CART');
   const [itemQuantity, setItemQuantity] = useState(1);
   const { productID } = useParams();
+  const { setTitle } = useContext(TitleContext);
 
   const { product, products, setProduct } = useContext(MockDataContext);
   const { addToCart } = useContext(CartContext);
@@ -52,7 +54,8 @@ const Product = () => {
 
   useEffect(() => {
     setProduct(filteredProduct);
-  }, [filteredProduct, setProduct]);
+    setTitle(filteredProduct?.name);
+  }, [filteredProduct, setProduct, setTitle]);
 
   // Wishlist Functions
 

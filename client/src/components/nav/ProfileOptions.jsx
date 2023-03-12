@@ -14,12 +14,12 @@ const ProfileOptions = ({ profile, setProfile }) => {
         {isAuthenticated ? (
           <>
             <li>
-              <Link to="profile" onClick={() => setProfile(!profile)}>
+              <Link to="account" onClick={() => setProfile(!profile)}>
                 Account
               </Link>
             </li>
             <li>
-              <Link to="" onClick={() => setProfile(!profile)}>
+              <Link to="orders" onClick={() => setProfile(!profile)}>
                 Orders
               </Link>
             </li>

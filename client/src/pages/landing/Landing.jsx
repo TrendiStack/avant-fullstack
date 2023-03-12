@@ -86,9 +86,13 @@ const Landing = () => {
         }}
       />
       <div className="absolute top-0 left-0 w-full h-screen bg-black opacity-50"></div>
-      <h1 className="text-6xl w-full text-center text-neutral-400 tracking-widest font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse">
-        AVANT
-      </h1>
+      <div className="text-6xl w-full text-center text-neutral-400 tracking-widest font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse">
+        <h1>AVANT</h1>
+        <p className="text-xs md:text-lg uppercase">
+          <span className="text-sm md:text-2xl">(</span>Click anywhere to enter
+          <span className="text-sm md:text-2xl">)</span>
+        </p>
+      </div>
     </div>
   );
 };

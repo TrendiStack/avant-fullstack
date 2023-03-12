@@ -1,9 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TfiPlus } from 'react-icons/tfi';
 
 const ProductImage = ({ product }) => {
   const [visible, setVisible] = useState(false);
   const imageRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(
+    /iphone|ipad|ipod|android/i.test(navigator.userAgent)
+  );
+
   const [cursor, setCursor] = useState({
     x: 0,
     y: 0,
@@ -23,9 +27,20 @@ const ProductImage = ({ product }) => {
     const y = cursor.y - imgRect.top;
     const xPercent = (x / imgWidth) * 100;
     const yPercent = (y / imgHeight) * 100;
-    img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-    img.style.transform = 'scale(1.2)';
+    if (!isMobile) {
+      img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+      img.style.transform = 'scale(1.2)';
+    }
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(/iphone|ipad|ipod|android/i.test(navigator.userAgent));
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div
       className="relative max-h-[500px] md:max-h-[600px] cursor-none overflow-hidden"
@@ -34,8 +49,10 @@ const ProductImage = ({ product }) => {
       onMouseLeave={() => setVisible(false)}
     >
       <TfiPlus
-        className={` z-50 text-2xl text-white pointer-events-none ${
-          visible ? 'absolute' : 'hidden'
+        className={`${
+          isMobile && 'opacity-0'
+        } z-50 text-2xl text-white pointer-events-none ${
+          visible & !isMobile ? 'absolute' : 'lg:hidden'
         }`}
         style={{
           top: cursor.y - 93,

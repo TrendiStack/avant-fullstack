@@ -1,12 +1,18 @@
 import { MockDataContext } from '../../context/MockDataContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Item from '../../components/Item';
 import Layout from '../../components/Layout';
+import { TitleContext } from '../../context/TitleContext';
 
 const Products = () => {
   const { products } = useContext(MockDataContext);
+  const { setTitle } = useContext(TitleContext);
   const { category } = useParams();
+
+  useEffect(() => {
+    setTitle(category);
+  }, [category, setTitle]);
 
   return (
     <Layout>

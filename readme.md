@@ -99,26 +99,31 @@ npm start
 
 ### Completed
 
-- Implemeted auth middleware for protected routes ✅
-- Make cart system server sided ✅
-- wishlist functionality ✅
-- Add email verification feature ✅
-- change first name, lastname, username, password, and email ✅
-- change profile picture ✅
-- Store product, collection and category data in database ✅
-- Fix search functionality ✅
-- default theme to device setting ✅
-- Improve scroll to top functionality ✅
+- Successfully added authentication middleware for protected routes. ✅
+
+- Transformed the cart system to server-side rendering. ✅
+- Implemented the ability to create and manage wishlists. ✅
+- Added email verification as a feature. ✅
+- Enabled users to change their first name, last name, username, password, and email. ✅
+- Implemented the ability for users to change their profile picture. ✅
+- Developed a system to store and manage product, collection, and category data in a database. ✅
+- Fixed issues with search functionality. ✅
+- Configured the default theme to match the user's device settings. ✅
+- Enhanced the scroll-to-top functionality. ✅
+- Dynamically updated page titles based on the directory path. ✅
+- Implement a zoom feature that activates when hovering over a product image.✅
 
 ### Uncompleted
 
-- Zoom functionality when hovering over product image
-- Add functionality to Footer
-- Make Term of service Page
-- Setup Newsletter
-- Add forgot password functionality
-- Make theme toggle smoother
-- settings
+- Enhance the Footer by adding new features and functionalities.
+
+- Create a dedicated page for the Terms of Service.
+- Store Orders and display them on Orders page.
+- Configure a Newsletter system that enables users to subscribe and receive updates.
+- Enable a "forgot password" feature for users who need to reset their login credentials.
+- Improve the user experience of the theme toggle by making it smoother and more seamless.
+- Adjust the settings according to user preferences and specifications.
+- Incorperate google Auth
 
 ## Authors
 

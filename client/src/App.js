@@ -1,6 +1,6 @@
 import { AuthContext } from './context/AuthContext';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import Footer from './components/footer/Footer';
 import Nav from './components/nav/Nav';
 import {
@@ -21,8 +21,17 @@ import {
   Success,
   PageNotFound,
 } from './pages/index.js';
+import Orders from './pages/orders/Orders';
+import { TitleContext } from './context/TitleContext';
 function App() {
   const { isAuthenticated, user } = useContext(AuthContext);
+  const { setLocation } = useContext(TitleContext);
+  const location = useLocation();
+  const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    setLocation(location.pathname);
+  }, [location, setLocation]);
 
   return (
     <div className="min-h-[100vh] theme">
@@ -35,7 +44,7 @@ function App() {
           <Route path="product/:productID" element={<Product />} />
           <Route path="cart" element={<Cart />} />
           <Route
-            path="profile"
+            path="account"
             element={isAuthenticated ? <Profile /> : <Navigate to="/home" />}
           />
           <Route
@@ -67,14 +76,15 @@ function App() {
             }
           />
           <Route path="wishlist" element={<Wishlist />} />
+          <Route path="orders" element={<Orders />} />
           <Route path="search/results/:query" element={<SearchResults />} />
-          <Route path="checkout" element={<Checkout />} />
+          {/* <Route path="checkout" element={<Checkout />} /> */}
         </Route>
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<Navigate to="/home/cart" />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound setNotFound={setNotFound} />} />
       </Routes>
-      <Footer />
+      <Footer notFound={notFound} />
     </div>
   );
 }

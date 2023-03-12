@@ -24,8 +24,8 @@ const SearchBar = ({ searchBar }) => {
         placeholder="Search"
         type="text"
         className={`${
-          searchBar ? 'w-44 md:w-full' : 'w-0'
-        } border-b border-black bg-transparent dark:border-white text-base placeholder:text-black placeholder:dark:text-white outline-none float-right transition-all duration-500`}
+          searchBar ? 'w-48 md:w-full' : 'w-0'
+        } relative z-50 md:left-4 bg-white border-b border-black bg-transparent dark:bg-black dark:border-white text-base placeholder:text-black placeholder:dark:text-white outline-none float-right transition-all duration-500`}
       />
     </form>
   );

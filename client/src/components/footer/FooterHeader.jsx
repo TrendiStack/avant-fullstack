@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const FooterHeader = ({ name, className }) => {
+const FooterHeader = ({ logo, name, className }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const handleScroll = () => {
@@ -24,8 +24,8 @@ const FooterHeader = ({ name, className }) => {
 
   return (
     <h1
-      onClick={handleScroll}
-      className={`${className} text-xl font-bold cursor-pointer`}
+      onClick={() => logo && handleScroll()}
+      className={`${className} text-xl font-bold ${logo && 'cursor-pointer'}`}
     >
       {name}
     </h1>
