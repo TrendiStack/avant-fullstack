@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 
 export const AuthContext = createContext({
@@ -16,6 +17,11 @@ export const AuthContext = createContext({
 });
 
 const AuthContextProvider = props => {
+  const {
+    user: googleUser,
+    logout: googleLogout,
+    isAuthenticated: googleAuth,
+  } = useAuth0();
   const [isAuthenticated, setIsAuthenticated] = useState(
     localStorage.getItem('jwt') ? true : false
   );
@@ -23,8 +29,30 @@ const AuthContextProvider = props => {
     JSON.parse(localStorage.getItem('user')) || null
   );
   const [errors, setErrors] = useState(null);
-
   const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    const createUser = async () => {
+      try {
+        if (googleAuth) {
+          const { data } = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/api/auth/google`,
+            { googleUser },
+            { withCredentials: true }
+          );
+          setIsAuthenticated(true);
+          localStorage.setItem('jwt', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          setUser(JSON.parse(localStorage.getItem('user')));
+          return data;
+        }
+      } catch (err) {
+        console.error('Error while logging in. Error: ', err.response.data.msg);
+        setErrors(err.response.data.msg);
+      }
+    };
+    createUser();
+  }, [googleAuth, googleUser]);
 
   const login = async (email, password) => {
     try {
@@ -52,7 +80,7 @@ const AuthContextProvider = props => {
       setUser(null);
       localStorage.removeItem('jwt');
       localStorage.removeItem('user');
-      checkAuth();
+      googleLogout();
     } catch (err) {
       console.error('Error while logging out.', err.response.data.msg);
       setErrors(err.response.data.msg);
@@ -211,7 +239,7 @@ const AuthContextProvider = props => {
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  });
 
   const value = {
     isAuthenticated,

@@ -53,7 +53,7 @@ const handleRegister = async (req, res, jwt, bcrypt) => {
     });
 
     const savedUser = await newUser.save();
-    // res.json(savedUser);
+
     //login the user
 
     const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET);

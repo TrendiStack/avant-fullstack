@@ -9,11 +9,17 @@ const {
   logout,
   loggedIn,
   verifyEmail,
+  google,
 } = require('../controllers/auth/index');
 
 // Register
 router.post('/', async (req, res) => {
   register(req, res, jwt, bcrypt);
+});
+
+// Google Auth0
+router.post('/google', (req, res) => {
+  google(req, res, jwt, bcrypt);
 });
 
 // Login

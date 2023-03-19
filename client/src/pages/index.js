@@ -14,3 +14,4 @@ export { default as PageNotFound } from './not_found/PageNotFound';
 export { default as Landing } from './landing/Landing';
 export { default as SearchResults } from './search_results/SearchResults';
 export { default as Checkout } from './checkout/Checkout';
+export { default as Terms } from './terms/Terms';

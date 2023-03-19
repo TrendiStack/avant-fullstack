@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TfiPlus } from 'react-icons/tfi';
 
 const ProductImage = ({ product }) => {
@@ -52,7 +52,7 @@ const ProductImage = ({ product }) => {
         className={`${
           isMobile && 'opacity-0'
         } z-50 text-2xl text-white pointer-events-none ${
-          visible & !isMobile ? 'absolute' : 'lg:hidden'
+          visible & !isMobile ? 'absolute' : 'hidden'
         }`}
         style={{
           top: cursor.y - 93,

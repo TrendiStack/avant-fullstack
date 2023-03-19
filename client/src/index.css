@@ -12,7 +12,15 @@ input:not(:placeholder-shown) ~ span {
 }
 
 .theme {
-  @apply bg-white text-black dark:bg-black dark:text-white transition-all duration-700;
+  @apply transition-all duration-700;
+}
+
+.light {
+  @apply bg-white text-black;
+}
+
+.dark {
+  @apply bg-black text-white;
 }
 
 .swiper-pagination {

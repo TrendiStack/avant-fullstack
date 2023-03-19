@@ -8,7 +8,7 @@ import Layout from '../../components/Layout';
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { errors, login, isAuthenticated } = useContext(AuthContext);
+  const { errors, isAuthenticated, login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const signIn = async e => {
@@ -27,7 +27,7 @@ const SignInForm = () => {
     <Layout>
       <form
         onSubmit={signIn}
-        className="flex flex-col gap-10 justify-center items-center mt-10 dark:text-white"
+        className="flex flex-col gap-10 justify-center items-center mt-10 mb-5 dark:text-white"
       >
         {errors && <span className="text-red-500">{errors}</span>}
         <FormLabel
@@ -55,8 +55,8 @@ const SignInForm = () => {
           !
         </p>
         <FormButton label="Sign In" />
-        {/* <FormButton google={true} /> */}
       </form>
+      <FormButton google={true} />
     </Layout>
   );
 };

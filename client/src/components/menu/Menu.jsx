@@ -5,8 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 
-const Menu = ({ menu, setMenu, isAuthenticated }) => {
-  const { logout } = useContext(AuthContext);
+const Menu = ({ menu, setMenu }) => {
+  const { isAuthenticated, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -56,7 +56,9 @@ const Menu = ({ menu, setMenu, isAuthenticated }) => {
             <Link to="/home">Home</Link>
           </li>
           <li onClick={() => setMenu(false)} className="menu-item">
-            <Link to="/home/Account">Account</Link>
+            <Link to={`/home/${isAuthenticated ? 'account' : 'sign-in'}`}>
+              Account
+            </Link>
           </li>
 
           <li onClick={() => setMenu(false)} className="menu-item">

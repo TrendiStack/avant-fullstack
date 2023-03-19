@@ -74,8 +74,8 @@ const UserDataDisplay = ({ header, data, form, verification }) => {
                 <BsPatchCheckFill />
                 <p>Not Verified</p>
               </div>
-              <button class="text-sm group">
-                <span class="bg-left-bottom lg:bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+              <button className="text-sm group">
+                <span className="bg-left-bottom lg:bg-gradient-to-r from-white to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                   Resend Verification Email
                 </span>
               </button>

@@ -40,13 +40,3 @@ const ThemeContextProvider = ({ children }) => {
 };
 
 export default ThemeContextProvider;
-// if (darkMode) {
-//   localStorage.setItem('darkMode', 'true');
-//   window.document.body.classList.add('dark');
-// } else if (darkMode === false) {
-//   localStorage.setItem('darkMode', 'false');
-//   window.document.body.classList.remove('dark');
-// } else {
-//   setDarkMode(isDarkMode);
-//   isDarkMode && window.document.body.classList.add('dark');
-// }

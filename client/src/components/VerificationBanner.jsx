@@ -1,11 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { IoIosClose } from 'react-icons/io';
 import Layout from './Layout';
 
 export const VerificationBanner = () => {
   const { user } = useContext(AuthContext);
-  const [show, setShow] = useState(user?.isVerified);
+  const [show, setShow] = useState(undefined);
+  useEffect(() => {
+    setShow(user?.isVerified);
+  }, [user?.isVerified]);
 
   return (
     <>

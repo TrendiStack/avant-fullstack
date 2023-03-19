@@ -45,7 +45,7 @@ const Footer = ({ notFound }) => {
             <div>
               <FooterHeader name="Company" />
               <ul>
-                <li>
+                {/* <li>
                   <Link to="/home">About</Link>
                 </li>
                 <li>
@@ -53,15 +53,15 @@ const Footer = ({ notFound }) => {
                 </li>
                 <li>
                   <Link to="/home">Privacy Policy</Link>
-                </li>
+                </li> */}
                 <li>
-                  <Link to="/home">Terms of Service</Link>
+                  <Link to="/home/terms">Terms of Service</Link>
                 </li>
               </ul>
             </div>
 
             {/* HELP */}
-            <div>
+            {/* <div>
               <FooterHeader name="Help" />
               <ul>
                 <li>
@@ -74,7 +74,7 @@ const Footer = ({ notFound }) => {
                   <Link to="/home">FAQs</Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             {/* FOLLOW US */}
             <div className="flex flex-col gap-2">
@@ -130,7 +130,7 @@ const Footer = ({ notFound }) => {
 
           <div className="bg-black py-4 text-xs sm:text-sm">
             <Layout className="flex justify-between text-white">
-              <p className="text-sm">
+              <p>
                 © 2023 <span className="font-semibold">AVANT</span>, All Rights
                 Reserved. Designed by{' '}
                 <a
@@ -142,13 +142,9 @@ const Footer = ({ notFound }) => {
                 </a>
               </p>
               <p>
-                <a
-                  href="https://www.linkedin.com/in/terel-phillips/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Link to="/home/terms">
                   Privacy & Cookies | Terms of Service
-                </a>
+                </Link>
               </p>
             </Layout>
           </div>

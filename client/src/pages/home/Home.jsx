@@ -5,7 +5,6 @@ import CategoriesSwiper from '../../components/home/CategoriesSwiper';
 import Layout from '../../components/Layout';
 import ReviewSwiper from '../../components/ReviewSwiper';
 import ShopVideo from '../../components/home/ShopVideo';
-import ScrollToTop from '../../components/ScrollToTop';
 
 const Home = () => {
   const { categories, collections } = useContext(MockDataContext);
@@ -59,7 +58,7 @@ const Home = () => {
             <Link
               key={i}
               to={`shop/categories/${category?.name}`}
-              className={`border-black border-2 hover:bg-black hover:text-white dark:bg-black dark:text-white hover:dark:bg-white hover:dark:text-black dark:border-white lg:py-3 transition-colors duration-300 ${
+              className={`flex items-center justify-center border-black border-2 hover:bg-black hover:text-white dark:bg-black dark:text-white hover:dark:bg-white hover:dark:text-black dark:border-white lg:py-3 transition-colors duration-300 ${
                 i === 0 ? 'ml-5 lg:ml-0' : i === 1 ? 'mr-5 lg:mr-0' : ''
               }`}
             >

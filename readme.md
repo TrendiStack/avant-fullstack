@@ -112,18 +112,19 @@ npm start
 - Enhanced the scroll-to-top functionality. ✅
 - Dynamically updated page titles based on the directory path. ✅
 - Implement a zoom feature that activates when hovering over a product image.✅
+- Create a dedicated page for the Terms of Service. ✅
+- Incorperate google Auth. ✅
+- Removed flash of white on page load for dark theme
 
 ### Uncompleted
 
 - Enhance the Footer by adding new features and functionalities.
 
-- Create a dedicated page for the Terms of Service.
 - Store Orders and display them on Orders page.
 - Configure a Newsletter system that enables users to subscribe and receive updates.
 - Enable a "forgot password" feature for users who need to reset their login credentials.
 - Improve the user experience of the theme toggle by making it smoother and more seamless.
 - Adjust the settings according to user preferences and specifications.
-- Incorperate google Auth
 
 ## Authors
 

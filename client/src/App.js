@@ -20,11 +20,15 @@ import {
   Checkout,
   Success,
   PageNotFound,
+  Terms,
 } from './pages/index.js';
 import Orders from './pages/orders/Orders';
 import { TitleContext } from './context/TitleContext';
+import { ThemeContext } from './context/ThemeContext';
+
 function App() {
   const { isAuthenticated, user } = useContext(AuthContext);
+  const { darkMode } = useContext(ThemeContext);
   const { setLocation } = useContext(TitleContext);
   const location = useLocation();
   const [notFound, setNotFound] = useState(false);
@@ -34,7 +38,7 @@ function App() {
   }, [location, setLocation]);
 
   return (
-    <div className="min-h-[100vh] theme">
+    <div className={`min-h-[100vh] theme ${darkMode ? 'dark' : 'light'}`}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Nav />}>
@@ -78,6 +82,7 @@ function App() {
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="orders" element={<Orders />} />
           <Route path="search/results/:query" element={<SearchResults />} />
+          <Route path="terms" element={<Terms />} />
           {/* <Route path="checkout" element={<Checkout />} /> */}
         </Route>
         <Route path="/success" element={<Success />} />

@@ -1,18 +1,18 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AuthContext } from '../../context/AuthContext';
 import { Link, Outlet } from 'react-router-dom';
+import { useContext } from 'react';
 import { useState } from 'react';
+import { VerificationBanner } from '../VerificationBanner';
 import AuthButton from '../auth/AuthButton';
 import Layout from '../Layout';
 import Menu from '../menu/Menu';
-import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
 import MenuIcon from '../menu/MenuIcon';
 import ProfileOptions from './ProfileOptions';
 import SearchBar from '../SearchBar';
 import ThemeToggle from '../ThemeToggle';
 import TotalItemIcon from './TotalItemIcon';
-import { VerificationBanner } from '../VerificationBanner';
 
 const Nav = () => {
   const [searchBar, setSearchBar] = useState(false);
